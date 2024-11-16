@@ -1,3 +1,39 @@
+@font-face {
+    font-family: police_principale;
+    src: url(../fonts/Manrope-VariableFont_wght.ttf);
+}
+
 body {
-    background-color: skyblue;
+    font-family: police_principale, serif;
+}
+
+.navbar {
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.navbar-brand{
+    margin: 0 5% 0 5%;
+}
+
+.container-fluid {
+    background-color: #009EE1;
+}
+
+.navbar-nav {
+    gap: 100px;
+}
+
+.nav-link {
+    color: white;
+}
+
+#connexion-button {
+    border-color: white;
+    color: white;
+}
+
+#connexion-button:hover {
+    background-color: white;
+    color: #009EE1;
 }
