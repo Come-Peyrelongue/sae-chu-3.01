@@ -1,13 +1,21 @@
+/* Importations des fonts */
 @font-face {
     font-family: police_principale;
     src: url(../fonts/Manrope-VariableFont_wght.ttf);
 }
 
+/* Organisation générale des pages */
 body {
     font-family: police_principale, serif;
 }
 
+h1 {
+    font-weight: bold;
+}
+
+/* Mise en page de la navbar de la page home/index.html.twig */
 .navbar {
+    height: 12vh;
     font-weight: bold;
     font-size: 1.2rem;
     padding: 0;
@@ -18,6 +26,7 @@ body {
 }
 
 .container-fluid {
+    height: 100%;
     background-color: #009EE1;
 }
 
@@ -34,6 +43,10 @@ body {
     padding: 0.5rem 1rem;
 }
 
+.navbar-button {
+    margin: 0 3% 0 3%;
+}
+
 #connexion-button {
     display: flex;
     align-items: center;
@@ -47,4 +60,62 @@ body {
 #connexion-button:hover {
     background-color: white;
     color: #009EE1;
+}
+
+/* Mise en page du contenu de la page */
+.content {
+    width: 100%;
+    height: 83vh;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.content #index-content-img {
+    border-radius: 0 30px 30px 0;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    width: 100%;
+}
+
+.content-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3%;
+    padding: 0 5% 0 0;
+}
+
+.content-text a {
+
+    text-decoration: none;
+    color: #009EE1;
+    white-space: nowrap;
+}
+
+.content-text a:hover {
+    color: #005d85;
+}
+
+.text-item p {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.text-item a {
+    width: 400px;
+    display: flex;
+    align-items: flex-start;
+    gap: 5%;
 }
