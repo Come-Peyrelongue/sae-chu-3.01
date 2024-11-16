@@ -8,12 +8,13 @@ body {
 }
 
 .navbar {
+    font-weight: bold;
     font-size: 1.2rem;
     padding: 0;
 }
 
 .navbar-brand{
-    margin: 0 5% 0 5%;
+    margin: 0 3% 0 3%;
 }
 
 .container-fluid {
@@ -25,12 +26,22 @@ body {
 }
 
 .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     color: white;
+    padding: 0.5rem 1rem;
 }
 
 #connexion-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     border-color: white;
     color: white;
+    padding: 0.5rem 1rem;
 }
 
 #connexion-button:hover {
