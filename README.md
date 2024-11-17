@@ -20,7 +20,9 @@
     * Puis installer Symfony : ``scoop install symfony-cli``
 
 Au démarrage dans PHPStorm, commencer par installer composer dans le projet : ``Composer install``
-Puis tester si le serveur et le projet Symfony fonctionnent : ``symfony serve``
+Puis tester si le serveur et le projet Symfony fonctionnent : ``composer start``
+Copier le fichier .env en .env.local, puis remplacer la ligne décommenter par : 
+**DATABASE_URL="mysql://votreLogin:votreMotDePasse@mysql:3306/votreLogin_CHU?serverVersion=mariadb-10.2.25&charset=utf8mb4"**
 
 * Installer PHP CS FIXER via :
 
@@ -28,6 +30,11 @@ Puis tester si le serveur et le projet Symfony fonctionnent : ``symfony serve``
 * Puis Twig CS FIXER via :
 
   https://github.com/VincentLanglet/Twig-CS-Fixer
+
+### Scripts composer
+
+* Lancer le serveur : ``composer start``
+* Création de la BD et apllication des migrations : ``composer db``
 
 **Vous êtes désormais prêt à travailler sur le projet !**
 
