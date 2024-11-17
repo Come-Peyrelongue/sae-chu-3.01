@@ -77,7 +77,11 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
+        "start": "symfony serve --no-tls --ansi",
+        "db": ["php bin/console doctrine:database:drop --force --if-exists", "php bin/console doctrine:database:create",
+            "php bin/console doctrine:migrations:migrate --no-interaction"],
+
+            "post-install-cmd": [
             "@auto-scripts"
         ],
         "post-update-cmd": [
