@@ -35,6 +35,8 @@ Copier le fichier .env en .env.local, puis remplacer la ligne décommenter par :
 
 * Lancer le serveur : ``composer start``
 * Création de la BD et apllication des migrations : ``composer db``
+* Lancemment des tests du code PHP CS Fixer + Twig CS Fixer  : ``composer test``
+* Correction du code PHP CS Fixer + Twig CS Fixer : ``composer fix``
 
 **Vous êtes désormais prêt à travailler sur le projet !**
 
