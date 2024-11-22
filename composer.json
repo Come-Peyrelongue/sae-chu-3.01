@@ -43,7 +43,8 @@
         "symfony/web-link": "6.3.*",
         "symfony/yaml": "6.3.*",
         "twig/extra-bundle": "^2.12|^3.0",
-        "twig/twig": "^2.12|^3.0"
+        "twig/twig": "^2.12|^3.0",
+        "ext-intl": "*"
     },
     "config": {
         "allow-plugins": {
@@ -79,7 +80,7 @@
         },
         "start": "symfony serve --no-tls --ansi",
         "db": ["php bin/console doctrine:database:drop --force --if-exists", "php bin/console doctrine:database:create",
-            "php bin/console doctrine:migrations:migrate --no-interaction"],
+            "php bin/console doctrine:migrations:migrate --no-interaction","php bin/console doctrine:fixtures:load --no-interaction"],
         "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run --diff",
         "fix:phpcs": "php vendor/bin/php-cs-fixer fix",
         "test:twigcs": "php vendor/bin/twig-cs-fixer ",
