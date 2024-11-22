@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Professionnel;
+use App\Factory\ProfessionnelFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -9,9 +11,6 @@ class ProfessionelFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
-
-        $manager->flush();
+        ProfessionnelFactory::createMany(50);
     }
 }

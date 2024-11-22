@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
+use Transliterator;
 
 /**
  * @extends PersistentProxyObjectFactory<Professionnel>
@@ -34,13 +35,23 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
      *
      * @todo inject services if required
      */
+    protected $transliterator;
     public function __construct()
     {
+        $this->transliterator = Transliterator::create('Latin-ASCII');
     }
 
     public static function class(): string
     {
         return Professionnel::class;
+    }
+
+    protected function normalizeName(string $name): string
+    {
+        $normalized = $this->transliterator->transliterate($name);
+        $normalized = preg_replace('/[^a-zA-Z0-9]+/', '-', $normalized);
+
+        return strtolower($normalized);
     }
 
     /**
@@ -50,12 +61,41 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
      */
     protected function defaults(): array|callable
     {
+        $specialitesReeducation = [
+            'Médecin rééducateur',
+            'Kinésithérapeute',
+            'Ergothérapeute',
+            'Psychomotricien',
+            'Orthophoniste',
+            'Infirmier spécialisé',
+            'Cardiologue',
+            'Pneumologue',
+            'Neurologue',
+            'Nutritionniste/Diététicien',
+            'Psychologue',
+            'Orthoprothésiste',
+            'Sage-femme',
+            'Médecin du sport',
+            'Technicien en appareillage',
+            'Gériatre',
+            'Urologue',
+            'Rhumatologue',
+            'Chirurgien orthopédiste',
+            'Infirmier en rééducation',
+        ];
+        $lastName = self::faker()->lastName();
+        $normalizedLastname = $this->normalizeName($lastName);
+        $login = $normalizedLastname . self::faker()->numberBetween(0001,9999);
+        $password = self::faker()->regexify('[A-Za-z0-9!@#$%^&*()_+=-]{12}');
+        $specialities = self::faker()->randomElement($specialitesReeducation);
+
+
         return [
-            'Login' => self::faker()->text(30),
-            'Nom' => self::faker()->text(40),
-            'Password' => self::faker()->text(50),
-            'ProfessionnelID' => self::faker()->randomNumber(),
-            'Spécialité' => self::faker()->text(60),
+            'Login' =>$login,
+            'Nom' => $normalizedLastname,
+            'Password' => $password,
+            'ProfessionnelID' => 0,
+            'Spécialité' => $specialities
         ];
     }
 
