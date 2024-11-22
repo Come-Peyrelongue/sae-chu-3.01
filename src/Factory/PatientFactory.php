@@ -5,6 +5,7 @@ namespace App\Factory;
 use App\Entity\Patient;
 use App\Repository\PatientRepository;
 use Doctrine\ORM\EntityRepository;
+use Transliterator;
 use Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory;
 use Zenstruck\Foundry\Persistence\Proxy;
 use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
@@ -34,14 +35,24 @@ final class PatientFactory extends PersistentProxyObjectFactory{
      *
      * @todo inject services if required
      */
+    protected $transliterator;
     public function __construct()
     {
+        $this->transliterator = Transliterator::create('Latin-ASCII');
     }
 
     public static function class(): string
     {
         return Patient::class;
     }
+    protected function normalizeName(string $name): string
+    {
+        $normalized = $this->transliterator->transliterate($name);
+        $normalized = preg_replace('/[^a-zA-Z0-9]+/', '-', $normalized);
+
+        return strtolower($normalized);
+    }
+
 
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
@@ -50,12 +61,46 @@ final class PatientFactory extends PersistentProxyObjectFactory{
      */
     protected function defaults(): array|callable
     {
+        $pathologies = [
+            'Diabète de type 1',
+            'Diabète de type 2',
+            'Hypertension artérielle',
+            'Asthme',
+            'Bronchite chronique',
+            'Infarctus du myocarde',
+            'Insuffisance rénale',
+            'Cancer du sein',
+            'Cancer du poumon',
+            'Anémie',
+            'Migraine chronique',
+            'Dépression',
+            'Troubles bipolaires',
+            'Arthrose',
+            'Maladie d’Alzheimer',
+            'Sclérose en plaques',
+            'Covid-19',
+            'Grippe saisonnière',
+            'Pneumonie',
+            'Maladie de Crohn',
+            'Hépatite C',
+        ];
+
+        $firstName = self::faker()->firstName();
+        $lastName = self::faker()->lastName();
+        $normalizedFirstname = $this->normalizeName($firstName);
+        $normalizedLastname = $this->normalizeName($lastName);
+        $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname);
+        $password = self::faker()->regexify('[A-Za-z0-9!@#$%^&*()_+=-]{12}');
+        $pathology = self::faker()->randomElement($pathologies);
+
+
         return [
-            'Login' => self::faker()->text(30),
-            'Nom' => self::faker()->text(40),
-            'Password' => self::faker()->text(50),
-            'PatientID' => self::faker()->randomNumber(),
-            'Prenom' => self::faker()->text(40),
+            'Login' =>$login,
+            'Nom' => $normalizedLastname,
+            'Password' => $password,
+            'Prenom' => $normalizedFirstname,
+            'PatientId' => 0,
+            'Pathologie' => $pathology,
         ];
     }
 
