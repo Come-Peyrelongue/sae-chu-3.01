@@ -11,48 +11,42 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         UserFactory::createOne([
-            'firstname' => 'Come',
-            'lastname' => 'PEYRELONGUE',
+            'nom' => 'PEYRELONGUE',
             'login' => 'Come',
             'roles' => ['ROLE_ADMIN'],
             'password' => 'test',
         ]);
 
         UserFactory::createOne([
-            'firstname' => 'Hugo',
-            'lastname' => 'RAYAUME',
+            'nom' => 'RAYAUME',
             'login' => 'Hugo',
             'roles' => ['ROLE_ADMIN'],
             'password' => 'test',
         ]);
 
         UserFactory::createOne([
-            'firstname' => 'Enzo',
-            'lastname' => 'DUPONT',
+            'nom' => 'DUPONT',
             'login' => 'Enzo',
             'roles' => ['ROLE_ADMIN'],
             'password' => 'test',
         ]);
 
         UserFactory::createOne([
-            'firstname' => 'Thomas',
-            'lastname' => 'LINDEN',
+            'nom' => 'LINDEN',
             'login' => 'ThomasL',
             'roles' => ['ROLE_ADMIN'],
             'password' => 'test',
         ]);
 
         UserFactory::createOne([
-            'firstname' => 'Thomas',
-            'lastname' => 'PAZZE',
+            'nom' => 'PAZZE',
             'login' => 'ThomasP',
             'roles' => ['ROLE_ADMIN'],
             'password' => 'test',
         ]);
 
         UserFactory::createOne([
-            'firstname' => 'firstname',
-            'lastname' => 'lastname',
+            'nom' => 'lastname',
             'login' => 'user',
             'roles' => ['ROLE_USER'],
             'password' => 'test',
