@@ -42,12 +42,13 @@ Copier le fichier .env en .env.local, puis remplacer la ligne décommenter par :
 
 ### comptes de test : 
 
-| Nom          | Login    | Roles         | Password |
-|--------------|----------|---------------|----------|
-| PEYRELONGUE  | Come     | ROLE_ADMIN    | test     |
-| RAYAUME      | Hugo     | ROLE_ADMIN    | test     |
-| DUPONT       | Enzo     | ROLE_ADMIN    | test     |
-| LINDEN       | ThomasL  | ROLE_ADMIN    | test     |
-| PAZZE        | ThomasP  | ROLE_ADMIN    | test     |
-| lastname     | user     | ROLE_USER     | test     |
+| Nom         | Login   | Roles      | Password |
+|-------------|---------|------------|----------|
+| PEYRELONGUE | Come    | ROLE_ADMIN | test     |
+| RAYAUME     | Hugo    | ROLE_ADMIN | test     |
+| DUPONT      | Enzo    | ROLE_ADMIN | test     |
+| LINDEN      | ThomasL | ROLE_ADMIN | test     |
+| PAZZE       | ThomasP | ROLE_ADMIN | test     |
+| lastname    | user    | ROLE_USER  | test     |
+| pro         | pro     | ROLE_PRO   | test     |
 
