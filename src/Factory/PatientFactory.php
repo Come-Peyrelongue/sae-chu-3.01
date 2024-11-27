@@ -110,7 +110,13 @@ final class PatientFactory extends PersistentProxyObjectFactory{
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Patient $patient): void {})
-        ;
+            ->afterInstantiate(function (Patient $patient): void {
+                UserFactory::createOne([
+                    'roles' => ['ROLE_USER'],
+                    'nom' => $patient->getNom(),
+                    'login' => $patient->getLogin(),
+                    'password' => 'test',
+                ]);
+            });
     }
 }
