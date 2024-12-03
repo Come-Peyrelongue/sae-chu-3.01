@@ -105,7 +105,13 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Professionnel $professionnel): void {})
-        ;
+            ->afterInstantiate(function (Professionnel $professionnel): void {
+                UserFactory::createOne([
+                    'roles' => ['ROLE_PRO'],
+                    'nom' => $professionnel->getNom(),
+                    'login' => $professionnel->getLogin(),
+                    'password' => $professionnel->getPassword(),
+                ]);
+            });
     }
 }

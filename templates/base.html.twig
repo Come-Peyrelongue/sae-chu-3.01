@@ -18,6 +18,40 @@
     {% endblock %}
 </head>
 <body>
-{% block body %}{% endblock %}
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid bg-primary">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('img/logo_chu.png') }}" alt="CHU Sébastopol" height="70">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse bg-primary" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Le CHU <span class="material-symbols-outlined">medical_services</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Informations pratiques <span class="material-symbols-outlined">info</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nous rejoindre <span class="material-symbols-outlined">emoji_people</span></a>
+                </li>
+            </ul>
+            {% if is_granted('ROLE_USER') %}
+                <span class="navbar-button d-flex justify-content-center">
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Déconnexion <span class="material-symbols-outlined">logout</span></a>
+            </span>
+            {% else %}
+                <span class="navbar-button d-flex justify-content-center">
+                    <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Connexion <span class="material-symbols-outlined">person</span></a>
+            </span>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+{% block body %}
+{% endblock %}
 </body>
 </html>
