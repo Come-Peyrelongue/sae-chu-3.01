@@ -35,14 +35,4 @@ class SéanceRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
-
-//    public function findOneBySomeField($value): ?Séance
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

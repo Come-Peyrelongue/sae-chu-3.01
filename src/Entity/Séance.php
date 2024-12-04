@@ -29,6 +29,12 @@ class Séance
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $Notes = null;
 
+    #[ORM\ManyToOne(inversedBy: 'séance')]
+    private ?Patient $patient = null;
+
+    #[ORM\ManyToOne(inversedBy: 'Scéance')]
+    private ?Professionnel $professionnel = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +96,30 @@ class Séance
     public function setNotes(?string $Notes): static
     {
         $this->Notes = $Notes;
+
+        return $this;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): static
+    {
+        $this->patient = $patient;
+
+        return $this;
+    }
+
+    public function getProfessionnel(): ?Professionnel
+    {
+        return $this->professionnel;
+    }
+
+    public function setProfessionnel(?Professionnel $professionnel): static
+    {
+        $this->professionnel = $professionnel;
 
         return $this;
     }

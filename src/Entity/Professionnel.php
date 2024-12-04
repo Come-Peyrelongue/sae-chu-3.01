@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfessionnelRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProfessionnelRepository::class)]
@@ -27,6 +29,14 @@ class Professionnel
 
     #[ORM\Column(length: 50)]
     private ?string $Password = null;
+
+    #[ORM\OneToMany(targetEntity: Séance::class, mappedBy: 'professionnel')]
+    private Collection $scéance;
+
+    public function __construct()
+    {
+        $this->Scéance = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +99,36 @@ class Professionnel
     public function setPassword(string $Password): static
     {
         $this->Password = $Password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Séance>
+     */
+    public function getScéance(): Collection
+    {
+        return $this->Scéance;
+    }
+
+    public function addScéance(Séance $scAnce): static
+    {
+        if (!$this->Scéance->contains($scAnce)) {
+            $this->Scéance->add($scAnce);
+            $scAnce->setProfessionnel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeScéance(Séance $scAnce): static
+    {
+        if ($this->Scéance->removeElement($scAnce)) {
+            // set the owning side to null (unless already changed)
+            if ($scAnce->getProfessionnel() === $this) {
+                $scAnce->setProfessionnel(null);
+            }
+        }
 
         return $this;
     }

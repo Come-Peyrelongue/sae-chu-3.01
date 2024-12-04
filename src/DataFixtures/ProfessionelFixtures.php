@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Professionnel;
 use App\Factory\ProfessionnelFactory;
+use App\Repository\SéanceRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 

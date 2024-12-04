@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PatientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PatientRepository::class)]
@@ -30,6 +32,14 @@ class Patient
 
     #[ORM\Column(length: 50)]
     private ?string $Password = null;
+
+    #[ORM\OneToMany(targetEntity: Séance::class, mappedBy: 'patient')]
+    private Collection $séance;
+
+    public function __construct()
+    {
+        $this->séance = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +114,36 @@ class Patient
     public function setPassword(string $Password): static
     {
         $this->Password = $Password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Séance>
+     */
+    public function getSéance(): Collection
+    {
+        return $this->séance;
+    }
+
+    public function addSAnce(Séance $sAnce): static
+    {
+        if (!$this->séance->contains($sAnce)) {
+            $this->séance->add($sAnce);
+            $sAnce->setPatient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSAnce(Séance $sAnce): static
+    {
+        if ($this->séance->removeElement($sAnce)) {
+            // set the owning side to null (unless already changed)
+            if ($sAnce->getPatient() === $this) {
+                $sAnce->setPatient(null);
+            }
+        }
 
         return $this;
     }
