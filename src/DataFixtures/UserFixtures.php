@@ -45,19 +45,6 @@ class UserFixtures extends Fixture
             'password' => 'test',
         ]);
 
-        UserFactory::createOne([
-            'nom' => 'lastname',
-            'login' => 'user',
-            'roles' => ['ROLE_USER'],
-            'password' => 'test',
-        ]);
-
-        for ($i = 0; $i < 10; ++$i) {
-            UserFactory::createOne([
-                'roles' => ['ROLE_USER'],
-            ]);
-        }
-
         $manager->flush();
     }
 }
