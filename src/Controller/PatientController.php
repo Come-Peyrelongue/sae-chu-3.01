@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\PatientRepository;
+use App\Repository\SeanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +13,9 @@ class PatientController extends AbstractController
 {
     #[Route('/patient', name: 'app_patient')]
     public function index(
-        Security $security,
-        PatientRepository $patientRepository): Response
+        Security          $security,
+        PatientRepository $patientRepository,
+        SeanceRepository  $séanceRepository): Response
     {
         if (!$security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
@@ -21,11 +23,13 @@ class PatientController extends AbstractController
 
         $login = $security->getUser()->getLogin();
         $patient = $patientRepository->findOneBylogin($login);
+        $seances = $séanceRepository->findByPatient($patient);
 
         return $this->render('patient/index.html.twig', [
             'controller_name' => 'PatientController',
             'patient' => $patient,
             'login' => $login,
+            'seances' => $seances,
         ]);
     }
 }

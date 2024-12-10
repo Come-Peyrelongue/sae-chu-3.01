@@ -30,12 +30,12 @@ class Professionnel
     #[ORM\Column(length: 50)]
     private ?string $Password = null;
 
-    #[ORM\OneToMany(targetEntity: Séance::class, mappedBy: 'professionnel')]
-    private Collection $scéance;
+    #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'professionnel')]
+    private Collection $sceance;
 
     public function __construct()
     {
-        $this->Scéance = new ArrayCollection();
+        $this->Sceance = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -104,26 +104,26 @@ class Professionnel
     }
 
     /**
-     * @return Collection<int, Séance>
+     * @return Collection<int, Seance>
      */
-    public function getScéance(): Collection
+    public function getSceance(): Collection
     {
-        return $this->Scéance;
+        return $this->Sceance;
     }
 
-    public function addScéance(Séance $scAnce): static
+    public function addSceance(Seance $scAnce): static
     {
-        if (!$this->Scéance->contains($scAnce)) {
-            $this->Scéance->add($scAnce);
+        if (!$this->Sceance->contains($scAnce)) {
+            $this->Sceance->add($scAnce);
             $scAnce->setProfessionnel($this);
         }
 
         return $this;
     }
 
-    public function removeScéance(Séance $scAnce): static
+    public function removeSceance(Seance $scAnce): static
     {
-        if ($this->Scéance->removeElement($scAnce)) {
+        if ($this->Sceance->removeElement($scAnce)) {
             // set the owning side to null (unless already changed)
             if ($scAnce->getProfessionnel() === $this) {
                 $scAnce->setProfessionnel(null);

@@ -33,12 +33,12 @@ class Patient
     #[ORM\Column(length: 50)]
     private ?string $Password = null;
 
-    #[ORM\OneToMany(targetEntity: Séance::class, mappedBy: 'patient')]
-    private Collection $séance;
+    #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'patient')]
+    private Collection $seance;
 
     public function __construct()
     {
-        $this->séance = new ArrayCollection();
+        $this->seance = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,26 +119,26 @@ class Patient
     }
 
     /**
-     * @return Collection<int, Séance>
+     * @return Collection<int, Seance>
      */
-    public function getSéance(): Collection
+    public function getSeance(): Collection
     {
-        return $this->séance;
+        return $this->seance;
     }
 
-    public function addSAnce(Séance $sAnce): static
+    public function addSAnce(Seance $sAnce): static
     {
-        if (!$this->séance->contains($sAnce)) {
-            $this->séance->add($sAnce);
+        if (!$this->seance->contains($sAnce)) {
+            $this->seance->add($sAnce);
             $sAnce->setPatient($this);
         }
 
         return $this;
     }
 
-    public function removeSAnce(Séance $sAnce): static
+    public function removeSAnce(Seance $sAnce): static
     {
-        if ($this->séance->removeElement($sAnce)) {
+        if ($this->seance->removeElement($sAnce)) {
             // set the owning side to null (unless already changed)
             if ($sAnce->getPatient() === $this) {
                 $sAnce->setPatient(null);

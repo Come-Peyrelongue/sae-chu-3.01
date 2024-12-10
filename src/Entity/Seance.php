@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\SéanceRepository;
+use App\Repository\SeanceRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SéanceRepository::class)]
-class Séance
+#[ORM\Entity(repositoryClass: SeanceRepository::class)]
+class Seance
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -29,10 +29,10 @@ class Séance
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $Notes = null;
 
-    #[ORM\ManyToOne(inversedBy: 'séance')]
+    #[ORM\ManyToOne(inversedBy: 'seance')]
     private ?Patient $patient = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Scéance')]
+    #[ORM\ManyToOne(inversedBy: 'Seance')]
     private ?Professionnel $professionnel = null;
 
     public function getId(): ?int
