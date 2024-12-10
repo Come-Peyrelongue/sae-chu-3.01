@@ -21,19 +21,22 @@ class Seance
     private ?\DateTimeInterface $Date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureDébut = null;
+    private ?\DateTimeInterface $HeureDebut = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $HeureFin = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
-    private ?string $Notes = null;
+    private ?string $Note = null;
 
     #[ORM\ManyToOne(inversedBy: 'seance')]
     private ?Patient $patient = null;
 
     #[ORM\ManyToOne(inversedBy: 'Seance')]
     private ?Professionnel $professionnel = null;
+
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $Type = null;
 
     public function getId(): ?int
     {
@@ -64,14 +67,14 @@ class Seance
         return $this;
     }
 
-    public function getHeureDébut(): ?\DateTimeInterface
+    public function getHeureDebut(): ?\DateTimeInterface
     {
-        return $this->HeureDébut;
+        return $this->HeureDebut;
     }
 
-    public function setHeureDébut(\DateTimeInterface $HeureDébut): static
+    public function setHeureDebut(\DateTimeInterface $HeureDebut): static
     {
-        $this->HeureDébut = $HeureDébut;
+        $this->HeureDebut = $HeureDebut;
 
         return $this;
     }
@@ -88,14 +91,14 @@ class Seance
         return $this;
     }
 
-    public function getNotes(): ?string
+    public function getNote(): ?string
     {
-        return $this->Notes;
+        return $this->Note;
     }
 
-    public function setNotes(?string $Notes): static
+    public function setNote(?string $Note): static
     {
-        $this->Notes = $Notes;
+        $this->Note = $Note;
 
         return $this;
     }
@@ -120,6 +123,18 @@ class Seance
     public function setProfessionnel(?Professionnel $professionnel): static
     {
         $this->professionnel = $professionnel;
+
+        return $this;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->Type;
+    }
+
+    public function setType(?string $Type): static
+    {
+        $this->Type = $Type;
 
         return $this;
     }

@@ -29,6 +29,8 @@ class SeanceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.professionnel = :val')
             ->setParameter('val', $value)
+            ->orderBy('seance.Date', 'ASC')
+            ->addOrderBy('seance.HeureDebut', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -42,6 +44,8 @@ class SeanceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.patient = :val')
             ->setParameter('val', $value)
+            ->orderBy('seance.Date', 'ASC')
+            ->addOrderBy('seance.HeureDebut', 'ASC')
             ->getQuery()
             ->getResult()
             ;

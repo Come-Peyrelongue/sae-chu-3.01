@@ -30,6 +30,8 @@ class SeanceFixture extends Fixture
         SeanceFactory::createOne([
             'patient' => $patient,
             'professionnel' => $professionnel,
+            'note' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor convallis volutpat. Nunc.',
+            'type' => 'consultation'
         ]);
 
 
