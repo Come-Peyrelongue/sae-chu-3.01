@@ -21,7 +21,7 @@ class DisponibiliteRessource
     private ?string $JourSemaine = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureDébut = null;
+    private ?\DateTimeInterface $HeureDebut = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $HeureFin = null;
@@ -55,14 +55,14 @@ class DisponibiliteRessource
         return $this;
     }
 
-    public function getHeureDébut(): ?\DateTimeInterface
+    public function getHeureDebut(): ?\DateTimeInterface
     {
-        return $this->HeureDébut;
+        return $this->HeureDebut;
     }
 
-    public function setHeureDébut(\DateTimeInterface $HeureDébut): static
+    public function setHeureDebut(\DateTimeInterface $HeureDebut): static
     {
-        $this->HeureDébut = $HeureDébut;
+        $this->HeureDebut = $HeureDebut;
 
         return $this;
     }

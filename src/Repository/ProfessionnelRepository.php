@@ -36,13 +36,13 @@ class ProfessionnelRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Professionnel
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneBylogin($login): ?Professionnel
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.Login = :login')
+            ->setParameter('login', $login)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
 }
