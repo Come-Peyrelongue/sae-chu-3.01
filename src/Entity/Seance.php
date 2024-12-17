@@ -15,77 +15,29 @@ class Seance
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureDebut = null;
+    private ?\DateTimeInterface $heureDebut = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureFin = null;
+    private ?\DateTimeInterface $heureFin = null;
 
     #[ORM\Column(length: 1000, nullable: true)]
-    private ?string $Note = null;
+    private ?string $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'seance')]
     private ?Patient $patient = null;
 
-    #[ORM\ManyToOne(inversedBy: 'Seance')]
+    #[ORM\ManyToOne(inversedBy: 'seance')]
     private ?Professionnel $professionnel = null;
 
     #[ORM\Column(length: 50, nullable: true)]
-    private ?string $Type = null;
+    private ?string $raison = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->Date;
-    }
-
-    public function setDate(\DateTimeInterface $Date): static
-    {
-        $this->Date = $Date;
-
-        return $this;
-    }
-
-    public function getHeureDebut(): ?\DateTimeInterface
-    {
-        return $this->HeureDebut;
-    }
-
-    public function setHeureDebut(\DateTimeInterface $HeureDebut): static
-    {
-        $this->HeureDebut = $HeureDebut;
-
-        return $this;
-    }
-
-    public function getHeureFin(): ?\DateTimeInterface
-    {
-        return $this->HeureFin;
-    }
-
-    public function setHeureFin(\DateTimeInterface $HeureFin): static
-    {
-        $this->HeureFin = $HeureFin;
-
-        return $this;
-    }
-
-    public function getNote(): ?string
-    {
-        return $this->Note;
-    }
-
-    public function setNote(?string $Note): static
-    {
-        $this->Note = $Note;
-
-        return $this;
     }
 
     public function getPatient(): ?Patient
@@ -112,15 +64,53 @@ class Seance
         return $this;
     }
 
-    public function getType(): ?string
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->Type;
+        return $this->date;
     }
 
-    public function setType(?string $Type): static
+    public function setDate(?\DateTimeInterface $date): void
     {
-        $this->Type = $Type;
+        $this->date = $date;
+    }
 
-        return $this;
+    public function getHeureDebut(): ?\DateTimeInterface
+    {
+        return $this->heureDebut;
+    }
+
+    public function setHeureDebut(?\DateTimeInterface $heureDebut): void
+    {
+        $this->heureDebut = $heureDebut;
+    }
+
+    public function getHeureFin(): ?\DateTimeInterface
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(?\DateTimeInterface $heureFin): void
+    {
+        $this->heureFin = $heureFin;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): void
+    {
+        $this->note = $note;
+    }
+
+    public function getRaison(): ?string
+    {
+        return $this->raison;
+    }
+
+    public function setRaison(?string $raison): void
+    {
+        $this->raison = $raison;
     }
 }

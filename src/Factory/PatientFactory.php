@@ -95,12 +95,10 @@ final class PatientFactory extends PersistentProxyObjectFactory{
 
 
         return [
-            'Login' =>$login,
-            'Nom' => $normalizedLastname,
-            'Password' => $password,
-            'Prenom' => $normalizedFirstname,
-            'PatientId' => 0,
-            'Pathologie' => $pathology,
+            'login' =>$login,
+            'nom' => $normalizedLastname,
+            'prenom' => $normalizedFirstname,
+            'pathologie' => $pathology,
         ];
     }
 
@@ -115,7 +113,6 @@ final class PatientFactory extends PersistentProxyObjectFactory{
                     'roles' => ['ROLE_USER'],
                     'nom' => $patient->getNom(),
                     'login' => $patient->getLogin(),
-                    'password' => 'test',
                 ]);
             });
     }

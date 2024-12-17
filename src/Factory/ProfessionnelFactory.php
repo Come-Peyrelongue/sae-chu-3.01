@@ -91,11 +91,9 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
 
 
         return [
-            'Login' =>$login,
-            'Nom' => $normalizedLastname,
-            'Password' => $password,
-            'ProfessionnelID' => 0,
-            'Spécialité' => $specialities
+            'login' =>$login,
+            'nom' => $normalizedLastname,
+            'specialite' => $specialities
         ];
     }
 
@@ -110,7 +108,6 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
                     'roles' => ['ROLE_PRO'],
                     'nom' => $professionnel->getNom(),
                     'login' => $professionnel->getLogin(),
-                    'password' => $professionnel->getPassword(),
                 ]);
             });
     }

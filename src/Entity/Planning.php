@@ -15,67 +15,64 @@ class Planning
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $PlanningID = null;
+    private ?int $planningID = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $Date = null;
+    private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureDebut = null;
+    private ?\DateTimeInterface $heureDebut = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $HeureFin = null;
+    private ?\DateTimeInterface $heureFin = null;
+
+    public function getHeureFin(): ?\DateTimeInterface
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(?\DateTimeInterface $heureFin): void
+    {
+        $this->heureFin = $heureFin;
+    }
+
+    public function getHeureDebut(): ?\DateTimeInterface
+    {
+        return $this->heureDebut;
+    }
+
+    public function setHeureDebut(?\DateTimeInterface $heureDebut): void
+    {
+        $this->heureDebut = $heureDebut;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): void
+    {
+        $this->date = $date;
+    }
+
+    public function getPlanningID(): ?int
+    {
+        return $this->planningID;
+    }
+
+    public function setPlanningID(?int $planningID): void
+    {
+        $this->planningID = $planningID;
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getPlanningID(): ?int
+    public function setId(?int $id): void
     {
-        return $this->PlanningID;
-    }
-
-    public function setPlanningID(int $PlanningID): static
-    {
-        $this->PlanningID = $PlanningID;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->Date;
-    }
-
-    public function setDate(\DateTimeInterface $Date): static
-    {
-        $this->Date = $Date;
-
-        return $this;
-    }
-
-    public function getHeureDebut(): ?\DateTimeInterface
-    {
-        return $this->HeureDebut;
-    }
-
-    public function setHeureDebut(\DateTimeInterface $HeureDebut): static
-    {
-        $this->HeureDebut = $HeureDebut;
-
-        return $this;
-    }
-
-    public function getHeureFin(): ?\DateTimeInterface
-    {
-        return $this->HeureFin;
-    }
-
-    public function setHeureFin(\DateTimeInterface $HeureFin): static
-    {
-        $this->HeureFin = $HeureFin;
-
-        return $this;
+        $this->id = $id;
     }
 }

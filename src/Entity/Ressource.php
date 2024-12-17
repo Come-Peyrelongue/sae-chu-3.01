@@ -14,52 +14,51 @@ class Ressource
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $RessourceID = null;
+    private ?int $ressourceID = null;
 
     #[ORM\Column(length: 40)]
-    private ?string $Nom = null;
+    private ?string $nom = null;
 
     #[ORM\Column(length: 60)]
-    private ?string $Type = null;
+    private ?string $type = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRessourceID(): ?int
+    public function setId(?int $id): void
     {
-        return $this->RessourceID;
+        $this->id = $id;
     }
 
-    public function setRessourceID(int $RessourceID): static
+    public function getRessourceID(): ?int
     {
-        $this->RessourceID = $RessourceID;
+        return $this->ressourceID;
+    }
 
-        return $this;
+    public function setRessourceID(?int $ressourceID): void
+    {
+        $this->ressourceID = $ressourceID;
     }
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(?string $nom): void
     {
-        $this->Nom = $Nom;
-
-        return $this;
+        $this->nom = $nom;
     }
 
     public function getType(): ?string
     {
-        return $this->Type;
+        return $this->type;
     }
 
-    public function setType(string $Type): static
+    public function setType(?string $type): void
     {
-        $this->Type = $Type;
-
-        return $this;
+        $this->type = $type;
     }
 }
