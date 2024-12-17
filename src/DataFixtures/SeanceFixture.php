@@ -24,8 +24,8 @@ class SeanceFixture extends Fixture
     {
         SeanceFactory::createMany(10);
 
-        $patient = $this->patientRepository->findOneBylogin('user');
-        $professionnel = $this->professionnelRepository->findOneBylogin('pro');
+        $patient = $this->patientRepository->findOneBy(['login' => 'user']);
+        $professionnel = $this->professionnelRepository->findOneBy(['login' => 'pro']);
 
         SeanceFactory::createOne([
             'date' => new \DateTime('2024/01/01'),
@@ -45,7 +45,7 @@ class SeanceFixture extends Fixture
             'patient' => $patient,
             'professionnel' => $professionnel,
             'note' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor convallis volutpat. Nunc.',
-            'type' => 'consultation'
+            'raison' => 'consultation'
         ]);
 
 

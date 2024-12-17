@@ -16,6 +16,7 @@ class ProfessionelFixtures extends Fixture
             'login' => 'pro',
             'prenom' => 'test',
             'nom' => 'pro',
+            'specialite' => 'test',
         ]);
     }
 }

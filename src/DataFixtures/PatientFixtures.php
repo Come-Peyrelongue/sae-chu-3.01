@@ -16,6 +16,7 @@ class PatientFixtures extends Fixture
             'nom' => 'user',
             'prenom' => 'test',
             'login' => 'user',
+            'pathologie' => 'test',
         ]);
     }
 }

@@ -83,17 +83,18 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
             'Chirurgien orthopédiste',
             'Infirmier en rééducation',
         ];
+        $firstName = self::faker()->firstName();
         $lastName = self::faker()->lastName();
         $normalizedLastname = $this->normalizeName($lastName);
         $login = $normalizedLastname . self::faker()->numberBetween(0001,9999);
-        $password = self::faker()->regexify('[A-Za-z0-9!@#$%^&*()_+=-]{12}');
-        $specialities = self::faker()->randomElement($specialitesReeducation);
+        $specialite = self::faker()->randomElement($specialitesReeducation);
 
 
         return [
             'login' =>$login,
             'nom' => $normalizedLastname,
-            'specialite' => $specialities
+            'prenom' => $firstName,
+            'specialite' => $specialite
         ];
     }
 
@@ -106,7 +107,6 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
             ->afterInstantiate(function (Professionnel $professionnel): void {
                 UserFactory::createOne([
                     'roles' => ['ROLE_PRO'],
-                    'nom' => $professionnel->getNom(),
                     'login' => $professionnel->getLogin(),
                 ]);
             });
