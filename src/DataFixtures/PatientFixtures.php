@@ -19,8 +19,6 @@ class PatientFixtures extends Fixture
             'password' => 'test',
         ]);
 
-        PatientFactory::createMany(50);
-
 //        SeanceRepository::class->find('1')->setPatient($patient);
 
 //        $manager->persist($patient);

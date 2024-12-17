@@ -29,19 +29,19 @@ class SeanceFixture extends Fixture
 
         SeanceFactory::createOne([
             'date' => new \DateTime('2024/01/01'),
-            'heure_début' => new \DateTime('2024/01/01 11:00:00'),
+            'heure_Debut' => new \DateTime('2024/01/01 11:00:00'),
             'patient' => $patient,
             'professionnel' => $professionnel,
         ]);
         SeanceFactory::createOne([
             'date' => new \DateTime('2024/01/01'),
-            'heure_début' => new \DateTime('2024/01/01 14:00:00'),
+            'heure_Debut' => new \DateTime('2024/01/01 14:00:00'),
             'patient' => $patient,
             'professionnel' => $professionnel,
         ]);
         SeanceFactory::createOne([
             'date' => new \DateTime('2024/01/01'),
-            'heure_début' => new \DateTime('2024/01/01 9:00:00'),
+            'heure_Debut' => new \DateTime('2024/01/01 9:00:00'),
             'patient' => $patient,
             'professionnel' => $professionnel,
             'note' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor convallis volutpat. Nunc.',

@@ -11,7 +11,7 @@
         {% for seance in seances %}
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> {{  seance.date|date("m/d/Y") }} &emsp;&emsp;&emsp; {{ seance.HeureDébut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</h5>
+                    <h5 class="card-title"> {{  seance.date|date("m/d/Y") }} &emsp;&emsp;&emsp; {{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</h5>
                     <p class="card-text">
                         Professionnel : {{ seance.professionnel.nom }}<br>
                         {% if seance.type is defined %}

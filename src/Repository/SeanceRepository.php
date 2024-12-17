@@ -50,4 +50,35 @@ class SeanceRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    /**
+     * @return Seance[] Returns an array of Seance objects
+     */
+    public function findByPatientPasse($value): array
+    {
+        return $this->createQueryBuilder('seance')
+            ->andWhere('seance.patient = :val')
+            ->andWhere('seance.Date < CURRENT_TIMESTAMP()')
+            ->setParameter('val', $value)
+            ->orderBy('seance.Date', 'ASC')
+            
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Seance[] Returns an array of Seance objects
+     */
+    public function findByPatientFutur($value): array
+    {
+        return $this->createQueryBuilder('seance')
+            ->andWhere('seance.patient = :val')
+            ->andWhere('seance.Date > CURRENT_TIMESTAMP()')
+            ->setParameter('val', $value)
+            ->orderBy('seance.Date', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+
 }
