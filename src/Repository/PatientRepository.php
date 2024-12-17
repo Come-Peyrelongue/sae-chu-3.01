@@ -39,7 +39,7 @@ class PatientRepository extends ServiceEntityRepository
     public function findOneBylogin($login): ?Patient
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.Login = :login')
+            ->andWhere('p.login = :login')
             ->setParameter('login', $login)
             ->getQuery()
             ->getOneOrNullResult()

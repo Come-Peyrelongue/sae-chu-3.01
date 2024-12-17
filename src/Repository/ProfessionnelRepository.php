@@ -39,7 +39,7 @@ class ProfessionnelRepository extends ServiceEntityRepository
     public function findOneBylogin($login): ?Professionnel
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.Login = :login')
+            ->andWhere('p.login = :login')
             ->setParameter('login', $login)
             ->getQuery()
             ->getOneOrNullResult()
