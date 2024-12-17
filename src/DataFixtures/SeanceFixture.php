@@ -28,6 +28,20 @@ class SeanceFixture extends Fixture
         $professionnel = $this->professionnelRepository->findOneBylogin('pro');
 
         SeanceFactory::createOne([
+            'date' => new \DateTime('2024/01/01'),
+            'heure_début' => new \DateTime('2024/01/01 11:00:00'),
+            'patient' => $patient,
+            'professionnel' => $professionnel,
+        ]);
+        SeanceFactory::createOne([
+            'date' => new \DateTime('2024/01/01'),
+            'heure_début' => new \DateTime('2024/01/01 14:00:00'),
+            'patient' => $patient,
+            'professionnel' => $professionnel,
+        ]);
+        SeanceFactory::createOne([
+            'date' => new \DateTime('2024/01/01'),
+            'heure_début' => new \DateTime('2024/01/01 9:00:00'),
             'patient' => $patient,
             'professionnel' => $professionnel,
         ]);
