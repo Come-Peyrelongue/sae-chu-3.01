@@ -44,6 +44,8 @@ class SeanceFixture extends Fixture
             'heure_début' => new \DateTime('2024/01/01 9:00:00'),
             'patient' => $patient,
             'professionnel' => $professionnel,
+            'note' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor convallis volutpat. Nunc.',
+            'type' => 'consultation'
         ]);
 
 

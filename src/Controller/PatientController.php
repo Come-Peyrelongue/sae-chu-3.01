@@ -24,12 +24,17 @@ class PatientController extends AbstractController
         $login = $security->getUser()->getLogin();
         $patient = $patientRepository->findOneBylogin($login);
         $seances = $séanceRepository->findByPatient($patient);
+        $a = [];
+        foreach ($seances as $seance) {
+            array_push($a, $seance->getProfessionnel());
+        }
 
         return $this->render('patient/index.html.twig', [
             'controller_name' => 'PatientController',
             'patient' => $patient,
             'login' => $login,
             'seances' => $seances,
+            'a' => $a,
         ]);
     }
 }

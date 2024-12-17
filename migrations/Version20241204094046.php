@@ -20,7 +20,7 @@ final class Version20241204094046 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE seance ADD patient_id INT DEFAULT NULL, ADD professionnel_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE seance ADD patient_id INT DEFAULT NULL, ADD professionnel_id INT DEFAULT NULL, ADD type VARCHAR(100) DEFAULT NULL');
         $this->addSql('ALTER TABLE seance ADD CONSTRAINT FK_187C5FCA6B899279 FOREIGN KEY (patient_id) REFERENCES patient (id)');
         $this->addSql('ALTER TABLE seance ADD CONSTRAINT FK_187C5FCA8A49CC82 FOREIGN KEY (professionnel_id) REFERENCES professionnel (id)');
         $this->addSql('CREATE INDEX IDX_187C5FCA6B899279 ON seance (patient_id)');

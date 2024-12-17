@@ -43,6 +43,9 @@ final class SeanceFactory extends PersistentProxyObjectFactory
         return Seance::class;
     }
 
+    // @todo type = consultation, suivi, urgence...
+    // @todo note = note que pourrais laisser le médecin
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
@@ -52,7 +55,7 @@ final class SeanceFactory extends PersistentProxyObjectFactory
     {
         return [
             'Date' => self::faker()->dateTimeBetween('-7 days', '+7 days'),
-            'HeureDébut' => new \DateTime('2000-1-1 '.self::faker()->time()),
+            'HeureDebut' => new \DateTime('2000-1-1 '.self::faker()->time()),
             'HeureFin' => new \DateTime('2000-1-1 '.self::faker()->time()),
             'SéanceID' => self::faker()->randomNumber(),
         ];

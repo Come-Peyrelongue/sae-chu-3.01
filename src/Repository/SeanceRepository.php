@@ -30,6 +30,7 @@ class SeanceRepository extends ServiceEntityRepository
             ->andWhere('seance.professionnel = :val')
             ->setParameter('val', $value)
             ->orderBy('seance.Date', 'ASC')
+            ->addOrderBy('seance.HeureDebut', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -44,6 +45,7 @@ class SeanceRepository extends ServiceEntityRepository
             ->andWhere('seance.patient = :val')
             ->setParameter('val', $value)
             ->orderBy('seance.Date', 'ASC')
+            ->addOrderBy('seance.HeureDebut', 'ASC')
             ->getQuery()
             ->getResult()
             ;
