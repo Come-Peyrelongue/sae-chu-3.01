@@ -17,7 +17,5 @@ class ProfessionelFixtures extends Fixture
             'password' => 'test',
             'nom' => 'pro',
         ]);
-
-        ProfessionnelFactory::createMany(50);
     }
 }

@@ -14,9 +14,6 @@ class Seance
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $SéanceID = null;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $Date = null;
 
@@ -41,18 +38,6 @@ class Seance
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getSéanceID(): ?int
-    {
-        return $this->SéanceID;
-    }
-
-    public function setSéanceID(int $SéanceID): static
-    {
-        $this->SéanceID = $SéanceID;
-
-        return $this;
     }
 
     public function getDate(): ?\DateTimeInterface
