@@ -17,9 +17,5 @@ class PatientFixtures extends Fixture
             'prenom' => 'test',
             'login' => 'user',
         ]);
-
-//        SeanceRepository::class->find('1')->setPatient($patient);
-
-//        $manager->persist($patient);
     }
 }

@@ -28,11 +28,11 @@ class Patient
     private ?string $login = null;
 
     #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'patient')]
-    private Collection $seance;
+    private Collection $seances;
 
     public function __construct()
     {
-        $this->seance = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,13 +85,13 @@ class Patient
         $this->login = $login;
     }
 
-    public function getSeance(): Collection
+    public function getSeances(): Collection
     {
-        return $this->seance;
+        return $this->seances;
     }
 
-    public function setSeance(Collection $seance): void
+    public function setSeances(Collection $seances): void
     {
-        $this->seance = $seance;
+        $this->seances = $seances;
     }
 }

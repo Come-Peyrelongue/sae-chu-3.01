@@ -18,6 +18,9 @@ class Professionnel
     #[ORM\Column(length: 40)]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 40)]
+    private ?string $prenom = null;
+
     #[ORM\Column(length: 60)]
     private ?string $specialite = null;
 
@@ -25,11 +28,11 @@ class Professionnel
     private ?string $login = null;
 
     #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'professionnel')]
-    private Collection $sceance;
+    private Collection $seances;
 
     public function __construct()
     {
-        $this->sceance = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,6 +55,16 @@ class Professionnel
         $this->nom = $nom;
     }
 
+    public function getPrenom(): ?string
+    {
+        return $this->prenom;
+    }
+
+    public function setPrenom(?string $prenom): void
+    {
+        $this->prenom = $prenom;
+    }
+
     public function getSpecialite(): ?string
     {
         return $this->specialite;
@@ -72,13 +85,13 @@ class Professionnel
         $this->login = $login;
     }
 
-    public function getSceance(): Collection
+    public function getSeances(): Collection
     {
-        return $this->sceance;
+        return $this->seances;
     }
 
-    public function setSceance(Collection $sceance): void
+    public function setSeances(Collection $seances): void
     {
-        $this->sceance = $sceance;
+        $this->seances = $seances;
     }
 }

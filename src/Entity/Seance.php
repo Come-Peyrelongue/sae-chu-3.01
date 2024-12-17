@@ -26,10 +26,10 @@ class Seance
     #[ORM\Column(length: 1000, nullable: true)]
     private ?string $note = null;
 
-    #[ORM\ManyToOne(inversedBy: 'seance')]
+    #[ORM\ManyToOne(inversedBy: 'seances')]
     private ?Patient $patient = null;
 
-    #[ORM\ManyToOne(inversedBy: 'seance')]
+    #[ORM\ManyToOne(inversedBy: 'seances')]
     private ?Professionnel $professionnel = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -40,28 +40,9 @@ class Seance
         return $this->id;
     }
 
-    public function getPatient(): ?Patient
+    public function setId(?int $id): void
     {
-        return $this->patient;
-    }
-
-    public function setPatient(?Patient $patient): static
-    {
-        $this->patient = $patient;
-
-        return $this;
-    }
-
-    public function getProfessionnel(): ?Professionnel
-    {
-        return $this->professionnel;
-    }
-
-    public function setProfessionnel(?Professionnel $professionnel): static
-    {
-        $this->professionnel = $professionnel;
-
-        return $this;
+        $this->id = $id;
     }
 
     public function getDate(): ?\DateTimeInterface
@@ -102,6 +83,26 @@ class Seance
     public function setNote(?string $note): void
     {
         $this->note = $note;
+    }
+
+    public function getPatient(): ?Patient
+    {
+        return $this->patient;
+    }
+
+    public function setPatient(?Patient $patient): void
+    {
+        $this->patient = $patient;
+    }
+
+    public function getProfessionnel(): ?Professionnel
+    {
+        return $this->professionnel;
+    }
+
+    public function setProfessionnel(?Professionnel $professionnel): void
+    {
+        $this->professionnel = $professionnel;
     }
 
     public function getRaison(): ?string
