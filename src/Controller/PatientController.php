@@ -24,6 +24,9 @@ class PatientController extends AbstractController
         $login = $security->getUser()->getLogin();
         $patient = $patientRepository->findOneBylogin($login);
         $seances = $séanceRepository->findByPatient($patient);
+        $seancesPasse = $séanceRepository->findByPatientPasse($patient);
+        $seancesFutur = $séanceRepository->findByPatientFutur($patient);
+
         $a = [];
         foreach ($seances as $seance) {
             array_push($a, $seance->getProfessionnel());
@@ -34,6 +37,8 @@ class PatientController extends AbstractController
             'patient' => $patient,
             'login' => $login,
             'seances' => $seances,
+            'seancesPasse' => $seancesPasse,
+            'seancesFutur' => $seancesFutur,
             'a' => $a,
         ]);
     }
