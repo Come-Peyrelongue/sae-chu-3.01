@@ -43,9 +43,6 @@ final class SeanceFactory extends PersistentProxyObjectFactory
         return Seance::class;
     }
 
-    // @todo type = consultation, suivi, urgence...
-    // @todo note = note que pourrais laisser le médecin
-
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
@@ -66,15 +63,27 @@ final class SeanceFactory extends PersistentProxyObjectFactory
         $formattedDateDebut = $dateDebut->format('Y-m-d') . ' ' . $heureDebut;
 
         $dateDebut = \DateTime::createFromFormat('Y-m-d H:i', $formattedDateDebut, $dateDebut->getTimezone());
+        $heureDebut = \DateTime::createFromFormat('Y-m-d H:i', $formattedDateDebut, $dateDebut->getTimezone());
 
-        $dureeSeance = self::faker()->numberBetween(15, 60);
-        $heureFin = clone $dateDebut;
+        $durations = [15, 30, 45, 60];
+        $dureeSeance = self::faker()->randomElement($durations);
+
+        $heureFin = clone $heureDebut;
         $heureFin->modify("+{$dureeSeance} minutes");
+
+        $types = [ 'Consultation de routine',
+            'Bilan médical',
+            'Consultation de suivi',
+            'Consultation spécialisée',
+            'Consultation d’urgence',];
+
 
         return [
             'date' => $dateDebut,
-            'heureDebut' => new \DateTime('2000-1-1 '.self::faker()->time()),
-            'heureFin' => new \DateTime('2000-1-1 '.self::faker()->time()),
+            'heureDebut' => $heureDebut,
+            'heureFin' => $heureFin,
+            'raison' => self::faker()->randomElement($types),
+            'note' => self::faker()->sentence(),
         ];
     }
 
