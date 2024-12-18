@@ -90,17 +90,14 @@ final class PatientFactory extends PersistentProxyObjectFactory{
         $normalizedFirstname = $this->normalizeName($firstName);
         $normalizedLastname = $this->normalizeName($lastName);
         $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname);
-        $password = self::faker()->regexify('[A-Za-z0-9!@#$%^&*()_+=-]{12}');
-        $pathology = self::faker()->randomElement($pathologies);
+        $pathologie = self::faker()->randomElement($pathologies);
 
 
         return [
-            'Login' =>$login,
-            'Nom' => $normalizedLastname,
-            'Password' => $password,
-            'Prenom' => $normalizedFirstname,
-            'PatientId' => 0,
-            'Pathologie' => $pathology,
+            'login' =>$login,
+            'nom' => $normalizedLastname,
+            'prenom' => $normalizedFirstname,
+            'pathologie' => $pathologie,
         ];
     }
 
@@ -113,9 +110,7 @@ final class PatientFactory extends PersistentProxyObjectFactory{
             ->afterInstantiate(function (Patient $patient): void {
                 UserFactory::createOne([
                     'roles' => ['ROLE_USER'],
-                    'nom' => $patient->getNom(),
                     'login' => $patient->getLogin(),
-                    'password' => 'test',
                 ]);
             });
     }

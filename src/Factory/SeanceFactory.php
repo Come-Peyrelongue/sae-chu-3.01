@@ -57,7 +57,6 @@ final class SeanceFactory extends PersistentProxyObjectFactory
             'Date' => self::faker()->dateTimeBetween('-7 days', '+7 days'),
             'HeureDebut' => new \DateTime('2000-1-1 '.self::faker()->time()),
             'HeureFin' => new \DateTime('2000-1-1 '.self::faker()->time()),
-            'SéanceID' => self::faker()->randomNumber(),
         ];
     }
 

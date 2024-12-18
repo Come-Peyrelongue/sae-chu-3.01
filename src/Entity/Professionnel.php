@@ -15,27 +15,24 @@ class Professionnel
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $ProfessionnelID = null;
+    #[ORM\Column(length: 40)]
+    private ?string $nom = null;
 
     #[ORM\Column(length: 40)]
-    private ?string $Nom = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 60)]
-    private ?string $Spécialité = null;
+    private ?string $specialite = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $Login = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $Password = null;
+    private ?string $login = null;
 
     #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'professionnel')]
-    private Collection $sceance;
+    private Collection $seances;
 
     public function __construct()
     {
-        $this->Sceance = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -43,93 +40,58 @@ class Professionnel
         return $this->id;
     }
 
-    public function getProfessionnelID(): ?int
+    public function setId(?int $id): void
     {
-        return $this->ProfessionnelID;
-    }
-
-    public function setProfessionnelID(int $ProfessionnelID): static
-    {
-        $this->ProfessionnelID = $ProfessionnelID;
-
-        return $this;
+        $this->id = $id;
     }
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(?string $nom): void
     {
-        $this->Nom = $Nom;
-
-        return $this;
+        $this->nom = $nom;
     }
 
-    public function getSpécialité(): ?string
+    public function getPrenom(): ?string
     {
-        return $this->Spécialité;
+        return $this->prenom;
     }
 
-    public function setSpécialité(string $Spécialité): static
+    public function setPrenom(?string $prenom): void
     {
-        $this->Spécialité = $Spécialité;
+        $this->prenom = $prenom;
+    }
 
-        return $this;
+    public function getSpecialite(): ?string
+    {
+        return $this->specialite;
+    }
+
+    public function setSpecialite(?string $specialite): void
+    {
+        $this->specialite = $specialite;
     }
 
     public function getLogin(): ?string
     {
-        return $this->Login;
+        return $this->login;
     }
 
-    public function setLogin(string $Login): static
+    public function setLogin(?string $login): void
     {
-        $this->Login = $Login;
-
-        return $this;
+        $this->login = $login;
     }
 
-    public function getPassword(): ?string
+    public function getSeances(): Collection
     {
-        return $this->Password;
+        return $this->seances;
     }
 
-    public function setPassword(string $Password): static
+    public function setSeances(Collection $seances): void
     {
-        $this->Password = $Password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Seance>
-     */
-    public function getSceance(): Collection
-    {
-        return $this->Sceance;
-    }
-
-    public function addSceance(Seance $scAnce): static
-    {
-        if (!$this->Sceance->contains($scAnce)) {
-            $this->Sceance->add($scAnce);
-            $scAnce->setProfessionnel($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSceance(Seance $scAnce): static
-    {
-        if ($this->Sceance->removeElement($scAnce)) {
-            // set the owning side to null (unless already changed)
-            if ($scAnce->getProfessionnel() === $this) {
-                $scAnce->setProfessionnel(null);
-            }
-        }
-
-        return $this;
+        $this->seances = $seances;
     }
 }

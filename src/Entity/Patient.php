@@ -15,30 +15,24 @@ class Patient
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $PatientID = null;
+    #[ORM\Column(length: 40)]
+    private ?string $nom = null;
 
     #[ORM\Column(length: 40)]
-    private ?string $Nom = null;
-
-    #[ORM\Column(length: 40)]
-    private ?string $Prenom = null;
+    private ?string $prenom = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    private ?string $Pathologie = null;
+    private ?string $pathologie = null;
 
     #[ORM\Column(length: 30)]
-    private ?string $Login = null;
-
-    #[ORM\Column(length: 50)]
-    private ?string $Password = null;
+    private ?string $login = null;
 
     #[ORM\OneToMany(targetEntity: Seance::class, mappedBy: 'patient')]
-    private Collection $seance;
+    private Collection $seances;
 
     public function __construct()
     {
-        $this->seance = new ArrayCollection();
+        $this->seances = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,105 +40,58 @@ class Patient
         return $this->id;
     }
 
-    public function getPatientID(): ?int
+    public function setId(?int $id): void
     {
-        return $this->PatientID;
-    }
-
-    public function setPatientID(int $PatientID): static
-    {
-        $this->PatientID = $PatientID;
-
-        return $this;
+        $this->id = $id;
     }
 
     public function getNom(): ?string
     {
-        return $this->Nom;
+        return $this->nom;
     }
 
-    public function setNom(string $Nom): static
+    public function setNom(?string $nom): void
     {
-        $this->Nom = $Nom;
-
-        return $this;
+        $this->nom = $nom;
     }
 
     public function getPrenom(): ?string
     {
-        return $this->Prenom;
+        return $this->prenom;
     }
 
-    public function setPrenom(string $Prenom): static
+    public function setPrenom(?string $prenom): void
     {
-        $this->Prenom = $Prenom;
-
-        return $this;
+        $this->prenom = $prenom;
     }
 
     public function getPathologie(): ?string
     {
-        return $this->Pathologie;
+        return $this->pathologie;
     }
 
-    public function setPathologie(?string $Pathologie): static
+    public function setPathologie(?string $pathologie): void
     {
-        $this->Pathologie = $Pathologie;
-
-        return $this;
+        $this->pathologie = $pathologie;
     }
 
     public function getLogin(): ?string
     {
-        return $this->Login;
+        return $this->login;
     }
 
-    public function setLogin(string $Login): static
+    public function setLogin(?string $login): void
     {
-        $this->Login = $Login;
-
-        return $this;
+        $this->login = $login;
     }
 
-    public function getPassword(): ?string
+    public function getSeances(): Collection
     {
-        return $this->Password;
+        return $this->seances;
     }
 
-    public function setPassword(string $Password): static
+    public function setSeances(Collection $seances): void
     {
-        $this->Password = $Password;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Seance>
-     */
-    public function getSeance(): Collection
-    {
-        return $this->seance;
-    }
-
-    public function addSAnce(Seance $sAnce): static
-    {
-        if (!$this->seance->contains($sAnce)) {
-            $this->seance->add($sAnce);
-            $sAnce->setPatient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSAnce(Seance $sAnce): static
-    {
-        if ($this->seance->removeElement($sAnce)) {
-            // set the owning side to null (unless already changed)
-            if ($sAnce->getPatient() === $this) {
-                $sAnce->setPatient(null);
-            }
-        }
-
-        return $this;
+        $this->seances = $seances;
     }
 }

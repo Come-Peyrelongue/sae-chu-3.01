@@ -29,8 +29,8 @@ class SeanceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.professionnel = :val')
             ->setParameter('val', $value)
-            ->orderBy('seance.Date', 'ASC')
-            ->addOrderBy('seance.HeureDebut', 'ASC')
+            ->orderBy('seance.date', 'ASC')
+            ->addOrderBy('seance.heureDebut', 'ASC')
             ->getQuery()
             ->getResult()
         ;
@@ -44,8 +44,8 @@ class SeanceRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.patient = :val')
             ->setParameter('val', $value)
-            ->orderBy('seance.Date', 'ASC')
-            ->addOrderBy('seance.HeureDebut', 'ASC')
+            ->orderBy('seance.date', 'ASC')
+            ->addOrderBy('seance.heureDebut', 'ASC')
             ->getQuery()
             ->getResult()
             ;
@@ -58,9 +58,9 @@ class SeanceRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.patient = :val')
-            ->andWhere('seance.Date < CURRENT_TIMESTAMP()')
+            ->andWhere('seance.date < CURRENT_TIMESTAMP()')
             ->setParameter('val', $value)
-            ->orderBy('seance.Date', 'ASC')
+            ->orderBy('seance.date', 'ASC')
             
             ->getQuery()
             ->getResult();
@@ -73,9 +73,9 @@ class SeanceRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.patient = :val')
-            ->andWhere('seance.Date > CURRENT_TIMESTAMP()')
+            ->andWhere('seance.date > CURRENT_TIMESTAMP()')
             ->setParameter('val', $value)
-            ->orderBy('seance.Date', 'ASC')
+            ->orderBy('seance.date', 'ASC')
             ->getQuery()
             ->getResult();
     }

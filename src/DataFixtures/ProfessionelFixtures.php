@@ -14,8 +14,9 @@ class ProfessionelFixtures extends Fixture
     {
         ProfessionnelFactory::createOne([
             'login' => 'pro',
-            'password' => 'test',
+            'prenom' => 'test',
             'nom' => 'pro',
+            'specialite' => 'test',
         ]);
     }
 }
