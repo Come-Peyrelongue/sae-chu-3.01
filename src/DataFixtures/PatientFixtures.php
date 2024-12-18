@@ -12,11 +12,12 @@ class PatientFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        $patient = PatientFactory::createOne([
+        PatientFactory::createOne([
             'nom' => 'user',
             'prenom' => 'test',
             'login' => 'user',
             'pathologie' => 'test',
         ]);
+        PatientFactory::createMany(10);
     }
 }

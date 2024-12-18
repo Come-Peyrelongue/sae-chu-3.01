@@ -89,15 +89,15 @@ final class PatientFactory extends PersistentProxyObjectFactory{
         $lastName = self::faker()->lastName();
         $normalizedFirstname = $this->normalizeName($firstName);
         $normalizedLastname = $this->normalizeName($lastName);
-        $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname);
-        $pathologie = self::faker()->randomElement($pathologies);
+        $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname) . self::faker()->numberBetween(001,999);
+        $pathology = self::faker()->randomElement($pathologies);
 
 
         return [
             'login' =>$login,
             'nom' => $normalizedLastname,
             'prenom' => $normalizedFirstname,
-            'pathologie' => $pathologie,
+            'pathologie' => $pathology,
         ];
     }
 
