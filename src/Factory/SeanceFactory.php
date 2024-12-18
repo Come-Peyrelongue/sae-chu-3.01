@@ -53,10 +53,28 @@ final class SeanceFactory extends PersistentProxyObjectFactory
      */
     protected function defaults(): array|callable
     {
+        $dateDebut = self::faker()->dateTimeBetween('-1 day', '+1 month');
+
+        $heuresFixes = [
+            '08:00', '08:30', '09:00', '09:30', '10:00', '10:30',
+            '11:00', '11:30', '12:00', '12:30', '13:00', '13:30',
+            '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30'
+        ];
+
+        $heureDebut = self::faker()->randomElement($heuresFixes);
+
+        $formattedDateDebut = $dateDebut->format('Y-m-d') . ' ' . $heureDebut;
+
+        $dateDebut = \DateTime::createFromFormat('Y-m-d H:i', $formattedDateDebut, $dateDebut->getTimezone());
+
+        $dureeSeance = self::faker()->numberBetween(15, 60);
+        $heureFin = clone $dateDebut;
+        $heureFin->modify("+{$dureeSeance} minutes");
+
         return [
-            'Date' => self::faker()->dateTimeBetween('-7 days', '+7 days'),
-            'HeureDebut' => new \DateTime('2000-1-1 '.self::faker()->time()),
-            'HeureFin' => new \DateTime('2000-1-1 '.self::faker()->time()),
+            'date' => $dateDebut,
+            'heureDebut' => new \DateTime('2000-1-1 '.self::faker()->time()),
+            'heureFin' => new \DateTime('2000-1-1 '.self::faker()->time()),
         ];
     }
 
