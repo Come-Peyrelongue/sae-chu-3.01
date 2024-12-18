@@ -18,6 +18,5 @@ class PatientFixtures extends Fixture
             'login' => 'user',
             'pathologie' => 'test',
         ]);
-        PatientFactory::createMany(10);
     }
 }
