@@ -38,14 +38,27 @@
                     <a class="nav-link" href="#">Nous rejoindre <span class="material-symbols-outlined">emoji_people</span></a>
                 </li>
             </ul>
-            {% if is_granted('ROLE_USER') %}
-                <span class="navbar-button d-flex justify-content-center">
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <span class="navbar-button d-flex gap-3 justify-content-center">
+                    <a href="{{ path('app_home') }}" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Mon espace personnel<span class="material-symbols-outlined">logout</span></a>
                     <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Déconnexion <span class="material-symbols-outlined">logout</span></a>
-            </span>
+                </span>
+            {% elseif is_granted('ROLE_PRO') %}
+                <span class="navbar-button d-flex gap-3 justify-content-center">
+                    <a href="{{ path('app_professionnel') }}" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Mon espace personnel<span class="material-symbols-outlined">logout</span></a>
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Déconnexion <span class="material-symbols-outlined">logout</span></a>
+                </span>
+            {% elseif is_granted('ROLE_USER') %}
+                <span class="navbar-button d-flex gap-3 justify-content-center">
+                    <a href="{{ path('app_patient') }}" class="btn btn-outline-secondary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Mon espace personnel<span class="material-symbols-outlined">logout</span></a>
+                    <a href="{{ path('app_logout') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Déconnexion <span class="material-symbols-outlined">logout</span></a>
+                </span>
+
             {% else %}
                 <span class="navbar-button d-flex justify-content-center">
                     <a href="{{ path('app_login') }}" class="btn btn-outline-primary btn-lg d-flex justify-content-center align-items-center" type="button" id="connexion-button">Connexion <span class="material-symbols-outlined">person</span></a>
-            </span>
+                </span>
             {% endif %}
 
         </div>
