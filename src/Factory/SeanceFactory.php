@@ -73,8 +73,7 @@ final class SeanceFactory extends PersistentProxyObjectFactory
 
         $types = [ 'Consultation de routine',
             'Bilan médical',
-            'Consultation de suivi',
-            'Consultation d’urgence',];
+            'Consultation de suivi',];
 
 
         return [
