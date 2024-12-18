@@ -10,15 +10,9 @@ use Doctrine\Persistence\ObjectManager;
 
 class SeanceFixture extends Fixture
 {
-    private PatientRepository $patientRepository;
-    private ProfessionnelRepository $professionnelRepository;
-
     public function __construct(
-        PatientRepository $patientRepository,
-        ProfessionnelRepository $professionnelRepository
     ) {
-        $this->patientRepository = $patientRepository;
-        $this->professionnelRepository = $professionnelRepository;
+
     }
     public function load(ObjectManager $manager): void
     {
