@@ -14,7 +14,7 @@
         {% if seancesFutur is defined and seancesFutur != [] %}
             <div class="row mt-4">
                 <div class="col-12">
-                    <h4 class="mb-4 text-secondary">Vos Séances futur:</h4>
+                    <h4 class="mb-4 text-secondary">Vos Séances Futures :</h4>
                 </div>
             </div>
             <div class="row">
@@ -22,15 +22,15 @@
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="card shadow-sm">
                             <div class="card-header bg-primary text-white">
-                                <h5 class="card-title mb-0">{{ seance.date|date("m/d/Y") }}</h5>
+                                <h5 class="card-title mb-0">{{ seance.date|date("d/m/Y") }}</h5>
                                 <small>{{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</small>
                             </div>
                             <div class="card-body">
                                 <p>
-                                    <strong>Professionnel : </strong> {{ seance.professionnel.nom }}
+                                    <strong>Professionnel :</strong> Dr. {{ seance.professionnel.nom|capitalize }} - {{ seance.professionnel.specialite }}
                                 </p>
                                 {% if seance.raison is defined and seance.raison != [] %}
-                                    <p><strong>Raison :</strong> {{ seance.raison }}</p>
+                                    <p><strong>Type de Séance :</strong> {{ seance.raison }}</p>
                                 {% endif %}
                                 {% if seance.note is defined and seance.note != [] %}
                                     <p><strong>Note :</strong> {{ seance.note }}</p>
@@ -45,15 +45,16 @@
             <div class="row">
                 <div class="col-12">
                     <div class="alert alert-warning text-center mt-4">
-                        <strong>Aucune séance futur trouvée.</strong>
+                        <strong>Aucune séance future trouvée.</strong>
                     </div>
                 </div>
             </div>
         {% endif %}
+
         {% if seancesPasse is defined and seancesPasse != [] %}
             <div class="row mt-4">
                 <div class="col-12">
-                    <h4 class="mb-4 text-secondary">Vos Séances Passés:</h4>
+                    <h4 class="mb-4 text-secondary">Vos Séances Passées :</h4>
                 </div>
             </div>
             <div class="row">
@@ -61,15 +62,15 @@
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="card shadow-sm">
                             <div class="card-header bg-secondary text-white">
-                                <h5 class="card-title mb-0">{{ seance.date|date("m/d/Y") }}</h5>
+                                <h5 class="card-title mb-0">{{ seance.date|date("d/m/Y") }}</h5>
                                 <small>{{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</small>
                             </div>
                             <div class="card-body">
                                 <p>
-                                    <strong>Professionnel :</strong> {{ seance.professionnel.nom }}
+                                    <strong>Professionnel :</strong> Dr. {{ seance.professionnel.nom|capitalize }}
                                 </p>
-                                {% if seance.raison is defined and seance.raison != []%}
-                                    <p><strong>Raison : </strong> {{ seance.raison }}</p>
+                                {% if seance.raison is defined and seance.raison != [] %}
+                                    <p><strong>Raison :</strong> {{ seance.raison }}</p>
                                 {% endif %}
                                 {% if seance.note is defined and seance.note != [] %}
                                     <p><strong>Note :</strong> {{ seance.note }}</p>

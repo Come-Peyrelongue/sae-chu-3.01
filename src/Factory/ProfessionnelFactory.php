@@ -85,16 +85,17 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
         ];
         $firstName = self::faker()->firstName();
         $lastName = self::faker()->lastName();
-        $normalizedLastname = $this->normalizeName($lastName);
-        $login = $normalizedLastname . self::faker()->numberBetween(0001,9999);
-        $specialite = self::faker()->randomElement($specialitesReeducation);
+        $normalizedLastName = $this->normalizeName($lastName);
+        $normalizedFirstName = $this->normalizeName($firstName);
+        $login = strtolower($normalizedFirstName) . '.' . strtolower($normalizedLastName) . self::faker()->numberBetween(001,999);
+        $speciality = self::faker()->randomElement($specialitesReeducation);
 
 
         return [
             'login' =>$login,
-            'nom' => $normalizedLastname,
-            'prenom' => $firstName,
-            'specialite' => $specialite
+            'nom' => $normalizedLastName,
+            'prenom' => $normalizedFirstName,
+            'specialite' => $speciality
         ];
     }
 

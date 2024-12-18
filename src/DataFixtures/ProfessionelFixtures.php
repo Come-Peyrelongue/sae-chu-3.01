@@ -12,11 +12,6 @@ class ProfessionelFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        ProfessionnelFactory::createOne([
-            'login' => 'pro',
-            'prenom' => 'test',
-            'nom' => 'pro',
-            'specialite' => 'test',
-        ]);
+
     }
 }
