@@ -1,30 +1,57 @@
 {% extends 'base.html.twig' %}
-{% block title %}Bienvenue sur votre espace patient.{% endblock %}
+{% block title %}Détails du patient{% endblock %}
 
 {% block body %}
-    <div class="content">
-    <h3> Bonjour {{ patient.Nom | upper }} {{ patient.prenom | capitalize }}</h3>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">
+                    Bonjour, <strong class="text-primary">{{ patient.Nom | upper }}</strong> {{ patient.prenom | capitalize }}
+                </h3>
+            </div>
+        </div>
 
-    {% if seances is defined %}
-        <div class="content">
-        <h4> vos Séances : </h4>
-        {% for seance in seances %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"> {{  seance.date|date("m/d/Y") }} &emsp;&emsp;&emsp; {{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</h5>
-                    <p class="card-text">
-                        Professionnel : {{ seance.professionnel.nom }}<br>
-                        {% if seance.type is defined %}
-                            type de Scéance : {{ seance.type }} <br>
-                        {% endif %}
-                        {% if seance.note is defined %}
-                            Note : {{ seance.note }}
-                        {% endif %}
-                    </p>
+        {% if seances is defined %}
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h4 class="mb-4 text-secondary">Vos Séances :</h4>
                 </div>
             </div>
-        {%  endfor %}
-        </div>
-    {% endif %}
+
+            <div class="row">
+                {% for seance in seances %}
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="card-title mb-0">{{ seance.date|date("m/d/Y") }}</h5>
+                                <small>{{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</small>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    <strong>Professionnel :</strong> {{ seance.professionnel.nom }}
+                                </p>
+                                {% if seance.type is defined %}
+                                    <p><strong>Type de Séance :</strong> {{ seance.type }}</p>
+                                {% endif %}
+                                {% if seance.notes is defined and seance.notes != [] %}
+                                    <p><strong>Note :</strong> {{ seance.notes }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer text-end">
+                                <a href="#" class="btn btn-sm btn-outline-primary">Voir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-warning text-center mt-4">
+                        <strong>Aucune séance trouvée pour ce patient.</strong>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}
