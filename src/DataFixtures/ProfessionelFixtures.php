@@ -18,5 +18,6 @@ class ProfessionelFixtures extends Fixture
             'nom' => 'pro',
             'specialite' => 'test',
         ]);
+        ProfessionnelFactory::createMany(5);
     }
 }
