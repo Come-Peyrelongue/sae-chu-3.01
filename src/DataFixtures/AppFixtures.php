@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Factory\PatientFactory;
 use App\Factory\ProfessionnelFactory;
 use App\Factory\SeanceFactory;
+use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -39,6 +40,17 @@ class AppFixtures extends Fixture
                 'patient' => $patients[array_rand($patients)],
             ]);
         }
+
+        $patient = PatientFactory::createOne(["login" => "user"]);
+        UserFactory::createOne(["password" => "test", "roles" => ["ROLE_USER"]]);
+
+        $pro = ProfessionnelFactory::createOne(["login" => "pro"]);
+        UserFactory::createOne(["password" => "test", "roles" => ["ROLE_PRO"]]);
+
+        SeanceFactory::createMany(3, [
+            'patient' => $patient,
+            'professionnel' => $pro,
+        ]);
 
 
         $manager->flush();
