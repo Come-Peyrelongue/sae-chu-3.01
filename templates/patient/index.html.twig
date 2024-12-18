@@ -7,15 +7,15 @@
 
     {% if seances is defined %}
         <div class="content">
-        <h4> vos Séances : </h4>
+        <h4> Vos Séances : </h4>
         {% for seance in seances %}
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"> {{  seance.date|date("m/d/Y") }} &emsp;&emsp;&emsp; {{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</h5>
+                    <h5 class="card-title"> {{  seance.date|date("d/m/Y") }} &emsp;&emsp;&emsp; {{ seance.HeureDebut|date("H:i") }} - {{ seance.HeureFin|date("H:i") }}</h5>
                     <p class="card-text">
-                        Professionnel : {{ seance.professionnel.nom }}<br>
-                        {% if seance.type is defined %}
-                            type de Séance : {{ seance.type }} <br>
+                        Professionnel : Dr. {{ seance.professionnel.nom|capitalize }} - {{ seance.professionnel.specialite }}<br>
+                        {% if seance.raison is defined %}
+                            Type de Séance : {{ seance.raison }} <br>
                         {% endif %}
                         {% if seance.note is defined %}
                             Note : {{ seance.note }}
