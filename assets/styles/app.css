@@ -77,10 +77,25 @@ h1 {
     padding: 2rem;
 }
 
+#planning {
+    height: 85vh;
+    width: 100%;
+    padding: 1%;
+}
+
 
 @media screen and (max-width: 992px) {
     .navbar-collapse {
         padding: 6%;
+        flex-direction: column;
+    }
+
+    #planning {
+        padding: 2%;
+        font-size: 0.6rem;
+    }
+
+    .buttons {
         flex-direction: column;
     }
 }
