@@ -21,13 +21,18 @@
             let calendarElt = document.querySelector("#planning");
 
             let calendar = new FullCalendar.Calendar(calendarElt, {
-                initialView: 'timeGridWeek',
+                initialView: 'timeGridDay',
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
                     start: 'prev,next today',
                     center: 'title',
-                    end: 'dayGridMonth,timeGridWeek,listWeek'
+                    end: 'timeGridDay,timeGridWeek,dayGridMonth'
+                },
+                titleFormat: {
+                    month: 'short',
+                    year: 'numeric',
+                    day: 'numeric'
                 },
                 events: {{ data|raw }},
                 nowIndicator: true,
