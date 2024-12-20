@@ -99,7 +99,7 @@ h1 {
 }
 
 /* Centrage des contenus dans les cartes */
-.card {
+.carte-home {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,7 +132,7 @@ h1 {
         flex-direction: column;
     }
 
-    .card {
+    .carte-home {
         visibility: hidden;
     }
 
