@@ -47,12 +47,9 @@
                             <a href="{{ path('app_seance_edit', { id: seance.id }) }}" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil"></i> Modifier
                             </a>
-                            <form method="post" action="{{ path('app_seance_delete', { id: seance.id }) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette séance ?');" style="display:inline;">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ seance.id) }}">
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i> Supprimer
-                                </button>
-                            </form>
+                            <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-arrow-left"></i> Supprimer
+                            </a>
                         </td>
                     </tr>
                 {% endfor %}

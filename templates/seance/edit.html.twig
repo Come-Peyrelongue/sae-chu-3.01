@@ -13,7 +13,9 @@
                 <button class="btn btn-success">
                     <i class="bi bi-save"></i> Enregistrer les modifications
                 </button>
-                {{ include('seance/_delete.html.twig') }}
+                <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger">
+                    <i class="bi bi-arrow-left"></i> Supprimer
+                </a>
                 {{ form_end(form) }}
             </div>
         </div>

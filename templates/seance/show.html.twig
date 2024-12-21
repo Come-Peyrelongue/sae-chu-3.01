@@ -50,7 +50,9 @@
             <a href="{{ path('app_seance_edit', { id: seance.id }) }}" class="btn btn-primary">
                 <i class="bi bi-pencil"></i> Modifier
             </a>
-
+            <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger">
+                <i class="bi bi-arrow-left"></i> Supprimer
+            </a>
         </div>
     </div>
 {% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Seance;
 use App\Form\SeanceType;
 use App\Repository\SeanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,15 +69,45 @@ class SeanceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/delete', name: 'app_seance_delete', methods: ['DELETE'])]
+    #[Route('/contact/{id}/delete', name: 'app_seance_delete', requirements: ['id' => '\d+'])]
     public function delete(Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $seance->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($seance);
-            $entityManager->flush();
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('app_login');
         }
 
-        return $this->redirectToRoute('app_seance');
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('app_seance_delete', ['id' => $seance->getId()]))
+            ->setMethod('POST')
+            ->add('cancel', SubmitType::class, [
+                'label' => 'Annuler',
+                'attr' => ['class' => 'btn btn-secondary'],
+            ])
+            ->add('delete', SubmitType::class, [
+                'label' => 'Supprimer',
+                'attr' => ['class' => 'btn btn-danger'],
+            ])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->get('delete')->isClicked()) {
+                $entityManager->remove($seance);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_seance');
+            }
+
+            if ($form->get('cancel')->isClicked()) {
+                return $this->redirectToRoute('app_seance_show', ['id' => $seance->getId()]);
+            }
+        }
+
+        return $this->render('seance/delete.html.twig', [
+            'form' => $form->createView(),
+            'seance' => $seance,
+        ]);
     }
 
 
