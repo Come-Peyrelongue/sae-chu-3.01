@@ -24,7 +24,7 @@ class SeanceRepository extends ServiceEntityRepository
     /**
      * @return Seance[] Returns an array of Seance objects
      */
-    public function findByProffesionnel($value): array
+    public function findByProfesionnel($value): array
     {
         return $this->createQueryBuilder('seance')
             ->andWhere('seance.professionnel = :val')
@@ -34,6 +34,16 @@ class SeanceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findByProfessionnelLogin(string $login): array
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.professionnel', 'p')
+            ->andWhere('p.login = :login')
+            ->setParameter('login', $login)
+            ->getQuery()
+            ->getResult();
     }
 
     /**

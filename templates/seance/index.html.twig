@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des séances{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Liste des séances</h1>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <a href="{{ path('app_seance_new') }}" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Ajouter une séance
+            </a>
+        </div>
+
+        {% if seances is empty %}
+            <div class="alert alert-warning" role="alert">
+                Aucune séance trouvée pour ce professionnel.
+            </div>
+        {% else %}
+            <table class="table table-striped table-bordered">
+                <thead class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Heure</th>
+                    <th>Patient</th>
+                    <th>Raison</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for seance in seances %}
+                    <tr>
+                        <td>{{ seance.id }}</td>
+                        <td>{{ seance.date|date('d/m/Y') }}</td>
+                        <td>
+                            {{ seance.heureDebut|date('H:i') }} - {{ seance.heureFin|date('H:i') }}
+                        </td>
+                        <td>
+                            {{ seance.patient ? seance.patient.nom|capitalize ~ ' ' ~ seance.patient.prenom|capitalize : 'Aucun' }}
+                        </td>
+                        <td>{{ seance.raison }}</td>
+                        <td>
+                            <a href="{{ path('app_seance_show', { id: seance.id }) }}" class="btn btn-info btn-sm">
+                                <i class="bi bi-eye"></i> Voir
+                            </a>
+                            <a href="{{ path('app_seance_edit', { id: seance.id }) }}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i> Modifier
+                            </a>
+                            <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-arrow-left"></i> Supprimer
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+{% endblock %}
+

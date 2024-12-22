@@ -91,7 +91,7 @@ final class SeanceFactory extends PersistentProxyObjectFactory
     protected function initialize(): static
     {
         return $this
-            // ->afterInstantiate(function(Seance $séance): void {})
+            // ->afterInstantiate(function(Seance $seance): void {})
         ;
     }
 }

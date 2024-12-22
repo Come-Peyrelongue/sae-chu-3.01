@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la séance{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Détails de la séance</h1>
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <th scope="row">ID</th>
+                        <td>{{ seance.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{ seance.date|date('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Heure de début</th>
+                        <td>{{ seance.heureDebut|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Heure de fin</th>
+                        <td>{{ seance.heureFin|date('H:i') }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Raison</th>
+                        <td>{{ seance.raison }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Note</th>
+                        <td>{{ seance.note }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Patient</th>
+                        <td>{{ seance.patient ? seance.patient.nom|capitalize ~ ' ' ~ seance.patient.prenom|capitalize : 'Aucun' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ path('app_seance') }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Retour à la liste
+            </a>
+            <a href="{{ path('app_seance_edit', { id: seance.id }) }}" class="btn btn-primary">
+                <i class="bi bi-pencil"></i> Modifier
+            </a>
+            <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger">
+                <i class="bi bi-arrow-left"></i> Supprimer
+            </a>
+        </div>
+    </div>
+{% endblock %}

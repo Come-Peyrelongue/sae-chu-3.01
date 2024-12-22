@@ -3,39 +3,58 @@
 {% block title %}Page d'accueil du plateau technique de l’hôpital Sébastopol{% endblock %}
 
 {% block body %}
-    <div class="container-fluid my-5 ">
-        <div class="content w-100 row g-5">
-            <div class="col-12 col-md-7">
-                <img src="{{ asset('img/image-index.png') }}" alt="CHU Sébastopol" class="img-fluid rounded">
-            </div>
-            <div class="col-12 col-md-3">
-                <div class="text-item">
-                    <h1>Adresse :</h1>
-                    <a href="https://www.google.com/maps/place/CHU+de+Reims+-+H%C3%B4pital+S%C3%A9bastopol/@49.2645089,4.0464497,17z/data=!3m1!4b1!4m6!3m5!1s0x47e975b86b85aab3:0xdda0886abe3e44fc!8m2!3d49.2645054!4d4.0490246!16s%2Fg%2F1vfn5_0k?entry=ttu&g_ep=EgoyMDI0MTExMy4xIKXMDSoASAFQAw%3D%3D" class="d-flex flex-row gap-2 align-items-start">
-                        <p>48 Rue de Sébastopol,51092 Reims</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5"/>
-                            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
-                        </svg>
-                    </a>
+<div class="container-fluid p-0">
+    <!-- Conteneur avec overflow: hidden pour le zoom -->
+    <div class="position-relative image-container">
+        <img src="{{ asset('img/image-index.png') }}" alt="CHU Sébastopol" class="zoom-image">
+
+        <!-- Texte centré sur l'image -->
+        <div class="position-absolute top-45 start-50 translate-middle text-white text-center">
+            <h1 class="fw-bold">Bienvenue sur le site du plateau technique de l'hôpital Sébastopol</h1>
+        </div>
+
+        <!-- Informations superposées en bas -->
+        <div class="position-absolute bottom-0 w-100">
+            <div class="row g-0">
+                <!-- Adresse -->
+                <div class="col-12 col-md-3">
+                    <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
+                        <h5 class="card-title mb-2">Adresse</h5>
+                        <a href="https://www.google.com/maps/place/CHU+de+Reims+-+H%C3%B4pital+S%C3%A9bastopol/@49.2645089,4.0464497,17z/data=!3m1!4b1!4m6!3m5!1s0x47e975b86b85aab3:0xdda0886abe3e44fc!8m2!3d49.2645054!4d4.0490246!16s%2Fg%2F1vfn5_0k?entry=ttu&g_ep=EgoyMDI0MTExMy4xIKXMDSoASAFQAw%3D%3D"
+                           target="_blank"
+                           class="text-decoration-none text-primary d-flex align-items-center justify-content-center">
+                            <p class="mb-0 me-2">48 Rue de Sébastopol, 51092 Reims</p>
+                            <span class="material-symbols-outlined">open_in_new</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="text-item">
-                    <h1>Téléphone :</h1>
-                    <p>03 26 78 78 78</p>
+                <!-- Téléphone -->
+                <div class="col-12 col-md-3">
+                    <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
+                        <h5 class="card-title mb-2">Téléphone</h5>
+                        <p class="card-text">03 26 78 78 78</p>
+                    </div>
                 </div>
-                <div class="text-item">
-                    <h1>Horaires :</h1>
-                    <p>
-                        Ouvert tous les jours, de 8h00 à 20h00
-                    </p>
+                <!-- Horaires -->
+                <div class="col-12 col-md-3">
+                    <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
+                        <h5 class="card-title mb-2">Horaires</h5>
+                        <p class="card-text">Ouvert tous les jours<br>de 8h00 à 20h00</p>
+                    </div>
                 </div>
-                <div class="text-item">
-                    <h1>Venir à l'hôpital :</h1>
-                    <p><b>Voiture:</b>En venant de Paris : Autoroute A4, portion A344 - Sortie  "Reims - Reims Centre" - Boulevard Louis Roederer"</p>
-                    <p><b>BUS:</b>Ligne 8 - Direction Champ Paveau - Arrêt "Sébastopol" et Ligne 11 - Direction Gare Centre- Arrêt "Sébastopol"</p>
+                <!-- Comment venir -->
+                <div class="col-12 col-md-3">
+                    <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
+                        <h5 class="card-title mb-2">Venir à l'hôpital</h5>
+                        <p class="card-text">
+                            <b>Voiture :</b> Autoroute A4<br>
+                            <b>BUS :</b> Ligne 8, Arrêt "Sébastopol"
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock %}

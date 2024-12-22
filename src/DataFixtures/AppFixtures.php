@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
 {
     /**
      * Fixtures généraux de l'application, chaque patient a au moins
-     * 2 séances et chaque professionnel est affecté à au moins 1 séance
+     * 2 séances et chaque professionnel est affecté à au moins 1 seance
      *
      * @param ObjectManager $manager
      * @return void

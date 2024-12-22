@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Suppression de la séance' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="container my-5 py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                <h1 id="title" class="mb-4 text-danger">{{ page_title }}</h1>
+                <p class="alert alert-danger fw-bold">
+                    Êtes-vous sûr de vouloir supprimer définitivement cette séance ?<br>
+                    <span class="text-muted">Cette action est irréversible.</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">Détails de la séance</h3>
+                        <p class="card-text">
+                            <strong>Date :</strong> {{ seance.date|date('d/m/Y') }}<br>
+                            <strong>Heure :</strong> {{ seance.heureDebut|date('H:i') }} - {{ seance.heureFin|date('H:i') }}<br>
+                            <strong>Patient :</strong> {{ seance.patient ? seance.patient.nom ~ ' ' ~ seance.patient.prenom : 'Non renseigné' }}<br>
+                            <strong>Professionnel :</strong> {{ seance.professionnel ? seance.professionnel.nom ~ ' ' ~ seance.professionnel.prenom : 'Non renseigné' }}<br>
+                            <strong>Raison :</strong> {{ seance.raison|default('Non renseignée') }}<br>
+                            <strong>Note :</strong> {{ seance.note|default('Aucune note.') }}<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-6 col-md-8 col-sm-12 text-center">
+                {{ form_start(form, { 'attr': { 'class': 'd-flex justify-content-around' } }) }}
+                    {{ form_row(form.cancel) }}
+                    {{ form_row(form.delete) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

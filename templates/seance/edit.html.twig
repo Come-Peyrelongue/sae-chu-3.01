@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la séance{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Modifier la séance</h1>
+
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'class': 'needs-validation'}}) }}
+                {{ form_widget(form, {'attr': {'class': 'form-control mb-3'}}) }}
+                <button class="btn btn-success">
+                    <i class="bi bi-save"></i> Enregistrer les modifications
+                </button>
+                <a href="{{ path('app_seance_delete', { id: seance.id }) }}" class="btn btn-danger">
+                    <i class="bi bi-arrow-left"></i> Supprimer
+                </a>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ path('app_seance_show', { id: seance.id }) }}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Annuler
+            </a>
+        </div>
+        <div class="mt-4">
+
+        </div>
+    </div>
+{% endblock %}

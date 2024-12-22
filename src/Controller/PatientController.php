@@ -15,7 +15,7 @@ class PatientController extends AbstractController
     public function index(
         Security          $security,
         PatientRepository $patientRepository,
-        SeanceRepository  $séanceRepository): Response
+        SeanceRepository  $seanceRepository): Response
     {
         if (!$security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
@@ -23,13 +23,13 @@ class PatientController extends AbstractController
 
         $login = $security->getUser()->getLogin();
         $patient = $patientRepository->findOneBylogin($login);
-        $seances = $séanceRepository->findByPatient($patient);
-        $seancesPasse = $séanceRepository->findByPatientPasse($patient);
-        $seancesFutur = $séanceRepository->findByPatientFutur($patient);
+        $seances = $seanceRepository->findByPatient($patient);
+        $seancesPasse = $seanceRepository->findByPatientPasse($patient);
+        $seancesFutur = $seanceRepository->findByPatientFutur($patient);
 
         $a = [];
         foreach ($seances as $seance) {
-            array_push($a, $seance->getProfessionnel());
+            $a[] = $seance->getProfessionnel();
         }
 
         return $this->render('patient/index.html.twig', [
