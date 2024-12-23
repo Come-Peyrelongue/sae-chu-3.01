@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <h1>Résultats pour "{{ search }}"</h1>
+
+    {% if results is not empty %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Spécialité</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for professionnel in results %}
+                <tr>
+                    <td>{{ professionnel.nom }}</td>
+                    <td>{{ professionnel.prenom }}</td>
+                    <td>{{ professionnel.specialite }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Aucun professionnel trouvé.</p>
+    {% endif %}
+{% endblock %}
