@@ -1,0 +1,9 @@
+<ul>
+    {% professionel in professionnels %}
+        <li>
+            <a href="{{ path('professionnel/show.html.twig', {id: professionnel.id}) }}">
+                {{ professionnel.Nom }} {{ professionnel.Spécialité }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>

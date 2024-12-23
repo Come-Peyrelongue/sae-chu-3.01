@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Résultats de la recherche{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-primary">Résultats pour "{{ search }}"</h1>
+        </div>
+
+        {% if results is not empty %}
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">Spécialité</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for professionnel in results %}
+                        <tr>
+                            <td>{{ professionnel.nom }}</td>
+                            <td>{{ professionnel.prenom }}</td>
+                            <td>{{ professionnel.specialite }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Aucun professionnel trouvé pour "{{ search }}".
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
