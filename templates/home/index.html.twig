@@ -4,19 +4,15 @@
 
 {% block body %}
 <div class="container-fluid p-0">
-    <!-- Conteneur avec overflow: hidden pour le zoom -->
     <div class="position-relative image-container">
-        <img src="{{ asset('img/image-index.png') }}" alt="CHU Sébastopol" class="zoom-image">
+        <img src="{{ asset('img/home.jpg') }}" alt="CHU Sébastopol" class="zoom-image">
 
-        <!-- Texte centré sur l'image -->
-        <div class="position-absolute top-45 start-50 translate-middle text-white text-center">
+        <div class="position-absolute top-45 start-50 translate-middle text-primary text-center">
             <h1 class="fw-bold">Bienvenue sur le site du plateau technique de l'hôpital Sébastopol</h1>
         </div>
 
-        <!-- Informations superposées en bas -->
         <div class="position-absolute bottom-0 w-100">
             <div class="row g-0">
-                <!-- Adresse -->
                 <div class="col-12 col-md-3">
                     <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
                         <h5 class="card-title mb-2">Adresse</h5>
@@ -28,21 +24,18 @@
                         </a>
                     </div>
                 </div>
-                <!-- Téléphone -->
                 <div class="col-12 col-md-3">
                     <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
                         <h5 class="card-title mb-2">Téléphone</h5>
                         <p class="card-text">03 26 78 78 78</p>
                     </div>
                 </div>
-                <!-- Horaires -->
                 <div class="col-12 col-md-3">
                     <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
                         <h5 class="card-title mb-2">Horaires</h5>
                         <p class="card-text">Ouvert tous les jours<br>de 8h00 à 20h00</p>
                     </div>
                 </div>
-                <!-- Comment venir -->
                 <div class="col-12 col-md-3">
                     <div class="card carte-home bg-light text-center p-3 h-100 border-0 d-flex align-items-center justify-content-center" style="border-radius: 0;">
                         <h5 class="card-title mb-2">Venir à l'hôpital</h5>
