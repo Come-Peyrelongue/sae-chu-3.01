@@ -7,6 +7,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-primary">Résultats pour "{{ search }}"</h1>
+            <a href="{{ path('app_home') }}" class="btn btn-secondary">Réinitialiser la recherche</a>
         </div>
 
         {% if results is not empty %}
@@ -22,9 +23,9 @@
                     <tbody>
                     {% for professionnel in results %}
                         <tr>
-                            <td>{{ professionnel.nom }}</td>
-                            <td>{{ professionnel.prenom }}</td>
-                            <td>{{ professionnel.specialite }}</td>
+                            <td>{{ professionnel.nom|capitalize }}</td>
+                            <td>{{ professionnel.prenom|capitalize }}</td>
+                            <td>{{ professionnel.specialite|capitalize }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
