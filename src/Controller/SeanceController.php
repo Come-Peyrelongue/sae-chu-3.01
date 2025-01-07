@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Seance;
 use App\Form\SeanceType;
+use App\Repository\ProfessionnelRepository;
 use App\Repository\SeanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -16,10 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class SeanceController extends AbstractController
 {
     #[Route('/', name: 'app_seance')]
-    public function index(SeanceRepository $seanceRepository): Response
+    public function index(SeanceRepository $seanceRepository,ProfessionnelRepository $professionnelRepository): Response
     {
+        $login = $this->getUser()->getUserIdentifier();
+        $seances = $seanceRepository->findByProfessionnelLogin($login);
+
         return $this->render('seance/index.html.twig', [
-            'seances' => $seanceRepository->findAll(),
+            'seances' => $seances,
         ]);
     }
 
