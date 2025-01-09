@@ -1,10 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Le CHU{% endblock %}
+{% block title %}Le CHU Sébastopol{% endblock %}
 
 {% block body %}
     <main class="container mt-5">
-        <h1>Le CHU</h1>
-        <p>Bienvenue sur la page dédiée au CHU. Découvrez nos services, notre histoire et nos engagements.</p>
+        <h1 class="text-primary">Le CHU Sébastopol de Reims</h1>
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">Présentation</div>
+            <div class="card-body">
+                <p>Le CHU Sébastopol de Reims est un centre hospitalier universitaire majeur dans la région Grand Est, offrant une large gamme de soins et de services médicaux.</p>
+            </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">Nos Missions</div>
+            <div class="card-body">
+                <p>Le CHU Sébastopol s'engage à fournir des soins de qualité, à la pointe de l'innovation médicale, tout en étant un centre de formation pour les professionnels de santé. Il participe également à la recherche médicale.</p>
+            </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">Nos Services</div>
+            <div class="card-body">
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-check-circle me-2"></i>Urgences et soins critiques</li>
+                    <li><i class="bi bi-check-circle me-2"></i>Cardiologie</li>
+                    <li><i class="bi bi-check-circle me-2"></i>Oncologie</li>
+                    <li><i class="bi bi-check-circle me-2"></i>Pédiatrie</li>
+                    <li><i class="bi bi-check-circle me-2"></i>Chirurgie</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-primary text-white">Nos Valeurs</div>
+            <div class="card-body">
+                <p>Le CHU Sébastopol place l'humain au cœur de ses priorités. L'accès aux soins pour tous, la qualité, la recherche et l'innovation sont les valeurs qui guident ses actions.</p>
+            </div>
+        </div>
     </main>
 {% endblock %}
