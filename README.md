@@ -31,6 +31,16 @@ Copier le fichier .env en .env.local, puis remplacer la ligne décommenter par :
 
   https://github.com/VincentLanglet/Twig-CS-Fixer
 
+## Exécution des tests
+
+### Pré-requis
+- Installer les dépendances avec Composer : `composer install`
+- Configurer une base de données de test dans le fichier `.env.test`
+
+### Lancer les tests
+Utilisez le script suivant pour exécuter les tests :
+``composer test:codeception``
+
 ### Scripts composer
 
 * Lancer le serveur : ``composer start``
