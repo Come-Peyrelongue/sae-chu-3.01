@@ -7,6 +7,7 @@ use App\Form\SeanceType;
 use App\Repository\ProfessionnelRepository;
 use App\Repository\SeanceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,8 +18,14 @@ use Doctrine\ORM\EntityManagerInterface;
 class SeanceController extends AbstractController
 {
     #[Route('/', name: 'app_seance')]
-    public function index(SeanceRepository $seanceRepository,ProfessionnelRepository $professionnelRepository): Response
+    public function index(Security $security,
+                          SeanceRepository $seanceRepository)
+    : Response
     {
+        if (!$security->isGranted('ROLE_PRO')) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $login = $this->getUser()->getUserIdentifier();
         $seances = $seanceRepository->findByProfessionnelLogin($login);
 
@@ -27,9 +34,29 @@ class SeanceController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_seance_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/admin', name: 'app_seance_admin')]
+    public function indexAdmin(Security $security,
+                               SeanceRepository $seanceRepository)
+    : Response
     {
+        if (!$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $seances = $seanceRepository->findAll();
+
+        return $this->render('seance/index.html.twig', [
+            'seances' => $seances,
+        ]);
+    }
+
+    #[Route('/new', name: 'app_seance_new', methods: ['GET', 'POST'])]
+    public function new(Security $security, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $seance = new Seance();
         $form = $this->createForm(SeanceType::class, $seance);
         $form->handleRequest($request);
@@ -48,16 +75,24 @@ class SeanceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_seance_show', methods: ['GET'])]
-    public function show(Seance $seance): Response
+    public function show(Security $security, Seance $seance): Response
     {
+        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_login');
+        }
+
         return $this->render('seance/show.html.twig', [
             'seance' => $seance,
         ]);
     }
 
     #[Route('/{id}/edit', name: 'app_seance_edit', methods: ['GET','POST'])]
-    public function edit(Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
+    public function edit(Security $security, Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
+        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_login');
+        }
+
         $form = $this->createForm(SeanceType::class, $seance);
         $form->handleRequest($request);
 
@@ -74,9 +109,9 @@ class SeanceController extends AbstractController
     }
 
     #[Route('/contact/{id}/delete', name: 'app_seance_delete', requirements: ['id' => '\d+'])]
-    public function delete(Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
+    public function delete(Security $security, Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
-        if (!$this->getUser()) {
+        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
 

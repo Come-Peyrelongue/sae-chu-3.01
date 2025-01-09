@@ -57,7 +57,7 @@
 
                     <div class="d-flex flex-lg-row flex-column gap-3 justify-content-center align-items-center">
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('app_home') }}" class="btn btn-outline-light btn-lg d-flex align-items-center justify-content-center gap-3">
+                            <a href="{{ path('app_admin') }}" class="btn btn-outline-light btn-lg d-flex align-items-center justify-content-center gap-3">
                                 Mon espace <span class="material-symbols-outlined me-2">account_circle</span>
                             </a>
                             <a href="{{ path('app_logout') }}" class="btn btn-danger btn-lg d-flex align-items-center justify-content-center gap-3">
