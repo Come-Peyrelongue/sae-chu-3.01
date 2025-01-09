@@ -18,18 +18,19 @@ class HomeController extends AbstractController
     #[Route('/chu', name: 'app_chu')]
     public function chu(): Response
     {
-        return $this->render('chu.html.twig');
+        return $this->render('chu/chu.html.twig');
     }
 
-    #[Route('/infos_pratiques-pratiques', name: 'app_infos_pratiques')]
+    #[Route('/infos-pratiques', name: 'app_infos_pratiques')]
     public function infosPratiques(): Response
     {
-        return $this->render('infos_pratiques.html.twig');
+        return $this->render('infos_pratiques/infos_pratiques.html.twig');
     }
 
     #[Route('/nous-rejoindre', name: 'app_nous_rejoindre')]
     public function nousRejoindre(): Response
     {
-        return $this->render('nous_rejoindre.html.twig');
+        return $this->render('nous_rejoindre/nous_rejoindre.html.twig');
     }
+
 }
