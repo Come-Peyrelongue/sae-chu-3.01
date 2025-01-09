@@ -4,15 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Seance;
 use App\Form\SeanceType;
-use App\Repository\ProfessionnelRepository;
 use App\Repository\SeanceRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
 #[Route('/seance')]
 class SeanceController extends AbstractController
@@ -20,7 +19,7 @@ class SeanceController extends AbstractController
     #[Route('/', name: 'app_seance')]
     public function index(
         Security $security,
-        SeanceRepository $seanceRepository
+        SeanceRepository $seanceRepository,
     ): Response {
         if (!$security->isGranted('ROLE_PRO')) {
             return $this->redirectToRoute('app_login');
@@ -37,7 +36,7 @@ class SeanceController extends AbstractController
     #[Route('/admin', name: 'app_seance_admin')]
     public function indexAdmin(
         Security $security,
-        SeanceRepository $seanceRepository
+        SeanceRepository $seanceRepository,
     ): Response {
         if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
@@ -86,7 +85,7 @@ class SeanceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_seance_edit', methods: ['GET','POST'])]
+    #[Route('/{id}/edit', name: 'app_seance_edit', methods: ['GET', 'POST'])]
     public function edit(Security $security, Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
         if (!$security->isGranted('ROLE_PRO') and !$security->isGranted('ROLE_ADMIN')) {
@@ -148,7 +147,4 @@ class SeanceController extends AbstractController
             'seance' => $seance,
         ]);
     }
-
-
-
 }

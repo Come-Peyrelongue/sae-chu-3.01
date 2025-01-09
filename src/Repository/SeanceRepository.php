@@ -89,6 +89,4 @@ class SeanceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
 }

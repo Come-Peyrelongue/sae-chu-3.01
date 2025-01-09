@@ -13,7 +13,7 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(
         Security $security,
-        ProfessionnelRepository $professionnelRepository
+        ProfessionnelRepository $professionnelRepository,
     ): Response {
         $login = $security->getUser()->getLogin();
         $pro = $professionnelRepository->findOneBylogin($login);

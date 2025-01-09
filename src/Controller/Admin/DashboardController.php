@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Patient;
 use App\Entity\Professionnel;
-use App\Entity\Seance;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;

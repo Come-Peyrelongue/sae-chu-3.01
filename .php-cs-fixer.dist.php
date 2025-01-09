@@ -1,11 +1,14 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__ . '/src')
-    ->in(__DIR__ . '/tests');
+$finder = (new PhpCsFixer\Finder())
+    ->in(__DIR__)
+    ->exclude('var')
+    ->exclude('tests/Support/_generated')
+;
 
 return (new PhpCsFixer\Config())
     ->setRules([
-        '@PSR12' => true,
+        '@Symfony' => true,
     ])
-    ->setFinder($finder);
+    ->setFinder($finder)
+    ;
