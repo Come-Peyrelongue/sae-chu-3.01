@@ -86,7 +86,7 @@
         "db": ["php bin/console doctrine:database:drop --force --if-exists", "php bin/console doctrine:database:create",
             "php bin/console doctrine:migrations:migrate --no-interaction","php bin/console doctrine:fixtures:load --no-interaction"],
         "test:phpcs": "php vendor/bin/php-cs-fixer fix --dry-run --diff",
-        "fix:phpcs": "php vendor/bin/php-cs-fixer fix",
+        "fix:phpcs": "php vendor/bin/php-cs-fixer fix src",
         "test:twigcs": "php vendor/bin/twig-cs-fixer ",
         "fix:twigcs": "php vendor/bin/twig-cs-fixer --fix",
         "test": [
@@ -113,6 +113,9 @@
         }
     },
     "require-dev": {
+        "codeception/codeception": "^5.1",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-symfony": "^3.5",
         "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.64",
         "phpunit/phpunit": "^9.5",

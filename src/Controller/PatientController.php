@@ -15,8 +15,8 @@ class PatientController extends AbstractController
     public function index(
         Security          $security,
         PatientRepository $patientRepository,
-        SeanceRepository  $seanceRepository): Response
-    {
+        SeanceRepository  $seanceRepository
+    ): Response {
         if (!$security->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
         }

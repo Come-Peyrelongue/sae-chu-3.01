@@ -12,10 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class PlanningController extends AbstractController
 {
     #[Route('/planning', name: 'app_planning')]
-    public function index(Security $security,
-                          SeanceRepository $seanceRepository
-    ): Response
-    {
+    public function index(
+        Security $security,
+        SeanceRepository $seanceRepository
+    ): Response {
         if (!$security->isGranted('ROLE_PRO')) {
             return $this->redirectToRoute('app_login');
         }
@@ -25,7 +25,7 @@ class PlanningController extends AbstractController
 
         $rdvs = [];
 
-        foreach($events as $event){
+        foreach ($events as $event) {
             $startDateTime = $event->getDate()->format('Y-m-d') . 'T' . $event->getHeureDebut()->format('H:i:s');
             $endDateTime = $event->getDate()->format('Y-m-d') . 'T' . $event->getHeureFin()->format('H:i:s');
 
@@ -44,10 +44,10 @@ class PlanningController extends AbstractController
     }
 
     #[Route('/planning/admin', name: 'app_planning_admin')]
-    public function indexAdmin(Security $security,
-                          SeanceRepository $seanceRepository
-    ): Response
-    {
+    public function indexAdmin(
+        Security $security,
+        SeanceRepository $seanceRepository
+    ): Response {
         if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
@@ -56,7 +56,7 @@ class PlanningController extends AbstractController
 
         $rdvs = [];
 
-        foreach($events as $event){
+        foreach ($events as $event) {
             $startDateTime = $event->getDate()->format('Y-m-d') . 'T' . $event->getHeureDebut()->format('H:i:s');
             $endDateTime = $event->getDate()->format('Y-m-d') . 'T' . $event->getHeureFin()->format('H:i:s');
 

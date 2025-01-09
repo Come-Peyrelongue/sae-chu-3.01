@@ -45,14 +45,14 @@ class UserCrudController extends AbstractCrudController
             TextField::new('login'),
             ArrayField::new('roles')
                 ->formatValue(function ($value) {
-                        if (in_array('ROLE_ADMIN',$value)) {
-                            return'<i class="fa-solid fa-address-card"></i>';
-                        } elseif (in_array('ROLE_PRO',$value)) {
-                            return '<i class="fa fa-user"></i>';
-                        } if (in_array('ROLE_USER',$value)) {
-                            return '<i class="fa-solid fa-user-nurse"></i>';
-                        } else {
-                            return '';
+                    if (in_array('ROLE_ADMIN', $value)) {
+                        return'<i class="fa-solid fa-address-card"></i>';
+                    } elseif (in_array('ROLE_PRO', $value)) {
+                        return '<i class="fa fa-user"></i>';
+                    } if (in_array('ROLE_USER', $value)) {
+                        return '<i class="fa-solid fa-user-nurse"></i>';
+                    } else {
+                        return '';
                     }
                 }),
             TextField::new('password')

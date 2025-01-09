@@ -29,7 +29,8 @@ use Transliterator;
  * @method static Professionnel[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Professionnel[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class ProfessionnelFactory extends PersistentProxyObjectFactory{
+final class ProfessionnelFactory extends PersistentProxyObjectFactory
+{
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -87,12 +88,12 @@ final class ProfessionnelFactory extends PersistentProxyObjectFactory{
         $lastName = self::faker()->lastName();
         $normalizedLastName = $this->normalizeName($lastName);
         $normalizedFirstName = $this->normalizeName($firstName);
-        $login = strtolower($normalizedFirstName) . '.' . strtolower($normalizedLastName) . self::faker()->numberBetween(001,999);
+        $login = strtolower($normalizedFirstName) . '.' . strtolower($normalizedLastName) . self::faker()->numberBetween(001, 999);
         $speciality = self::faker()->randomElement($specialitesReeducation);
 
 
         return [
-            'login' =>$login,
+            'login' => $login,
             'nom' => $normalizedLastName,
             'prenom' => $normalizedFirstName,
             'specialite' => $speciality

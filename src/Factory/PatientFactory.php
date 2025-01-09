@@ -29,7 +29,8 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
  * @method static Patient[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static Patient[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class PatientFactory extends PersistentProxyObjectFactory{
+final class PatientFactory extends PersistentProxyObjectFactory
+{
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -89,12 +90,12 @@ final class PatientFactory extends PersistentProxyObjectFactory{
         $lastName = self::faker()->lastName();
         $normalizedFirstname = $this->normalizeName($firstName);
         $normalizedLastname = $this->normalizeName($lastName);
-        $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname) . self::faker()->numberBetween(001,999);
+        $login = strtolower($normalizedFirstname) . '.' . strtolower($normalizedLastname) . self::faker()->numberBetween(001, 999);
         $pathology = self::faker()->randomElement($pathologies);
 
 
         return [
-            'login' =>$login,
+            'login' => $login,
             'nom' => $normalizedLastname,
             'prenom' => $normalizedFirstname,
             'pathologie' => $pathology,

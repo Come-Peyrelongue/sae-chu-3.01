@@ -29,7 +29,8 @@ use Zenstruck\Foundry\Persistence\ProxyRepositoryDecorator;
  * @method static User[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
  * @method static User[]|Proxy[] randomSet(int $number, array $attributes = [])
  */
-final class UserFactory extends PersistentProxyObjectFactory{
+final class UserFactory extends PersistentProxyObjectFactory
+{
     private UserPasswordHasherInterface $passwordHasher;
 
     public function __construct(UserPasswordHasherInterface $passwordHasher)
@@ -67,7 +68,7 @@ final class UserFactory extends PersistentProxyObjectFactory{
             ->afterInstantiate(function (User $user) {
                 $user->setPassword($this->passwordHasher->hashPassword($user, $user->getPassword()));
             })
-            ;
+        ;
     }
 
 }

@@ -19,7 +19,7 @@ class DashboardController extends AbstractDashboardController
     {
         $admin = $this->getUser();
 
-        return $this->render('admin/index.html.twig',[
+        return $this->render('admin/index.html.twig', [
             'admin' => $admin,
         ]);
     }
@@ -29,7 +29,7 @@ class DashboardController extends AbstractDashboardController
     {
         $admin = $this->getUser();
 
-        return $this->render('admin/dashboard.html.twig',[
+        return $this->render('admin/dashboard.html.twig', [
             'admin' => $admin,
         ]);
     }

@@ -18,10 +18,10 @@ use Doctrine\ORM\EntityManagerInterface;
 class SeanceController extends AbstractController
 {
     #[Route('/', name: 'app_seance')]
-    public function index(Security $security,
-                          SeanceRepository $seanceRepository)
-    : Response
-    {
+    public function index(
+        Security $security,
+        SeanceRepository $seanceRepository
+    ): Response {
         if (!$security->isGranted('ROLE_PRO')) {
             return $this->redirectToRoute('app_login');
         }
@@ -35,10 +35,10 @@ class SeanceController extends AbstractController
     }
 
     #[Route('/admin', name: 'app_seance_admin')]
-    public function indexAdmin(Security $security,
-                               SeanceRepository $seanceRepository)
-    : Response
-    {
+    public function indexAdmin(
+        Security $security,
+        SeanceRepository $seanceRepository
+    ): Response {
         if (!$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
@@ -53,7 +53,7 @@ class SeanceController extends AbstractController
     #[Route('/new', name: 'app_seance_new', methods: ['GET', 'POST'])]
     public function new(Security $security, Request $request, EntityManagerInterface $entityManager): Response
     {
-        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+        if (!$security->isGranted('ROLE_PRO') and !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -77,7 +77,7 @@ class SeanceController extends AbstractController
     #[Route('/{id}', name: 'app_seance_show', methods: ['GET'])]
     public function show(Security $security, Seance $seance): Response
     {
-        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+        if (!$security->isGranted('ROLE_PRO') and !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -89,7 +89,7 @@ class SeanceController extends AbstractController
     #[Route('/{id}/edit', name: 'app_seance_edit', methods: ['GET','POST'])]
     public function edit(Security $security, Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
-        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+        if (!$security->isGranted('ROLE_PRO') and !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
 
@@ -111,7 +111,7 @@ class SeanceController extends AbstractController
     #[Route('/contact/{id}/delete', name: 'app_seance_delete', requirements: ['id' => '\d+'])]
     public function delete(Security $security, Request $request, Seance $seance, EntityManagerInterface $entityManager): Response
     {
-        if (!$security->isGranted('ROLE_PRO') AND !$security->isGranted('ROLE_ADMIN')) {
+        if (!$security->isGranted('ROLE_PRO') and !$security->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_login');
         }
 

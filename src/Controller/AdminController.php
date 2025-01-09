@@ -14,8 +14,7 @@ class AdminController extends AbstractController
     public function index(
         Security $security,
         ProfessionnelRepository $professionnelRepository
-    ): Response
-    {
+    ): Response {
         $login = $security->getUser()->getLogin();
         $pro = $professionnelRepository->findOneBylogin($login);
 
