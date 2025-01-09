@@ -7,3 +7,9 @@ modules:
               app_path: 'src'
               environment: 'test'
         - Asserts:
+
+        - Doctrine2:
+            cleanup: true
+
+        - \App\Tests\Support\Helper\EntityManagerReset:
+            depends: Symfony
