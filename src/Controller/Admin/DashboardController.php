@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Patient;
 use App\Entity\Professionnel;
-use App\Entity\Seance;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -19,7 +18,7 @@ class DashboardController extends AbstractDashboardController
     {
         $admin = $this->getUser();
 
-        return $this->render('admin/index.html.twig',[
+        return $this->render('admin/index.html.twig', [
             'admin' => $admin,
         ]);
     }
@@ -29,7 +28,7 @@ class DashboardController extends AbstractDashboardController
     {
         $admin = $this->getUser();
 
-        return $this->render('admin/dashboard.html.twig',[
+        return $this->render('admin/dashboard.html.twig', [
             'admin' => $admin,
         ]);
     }

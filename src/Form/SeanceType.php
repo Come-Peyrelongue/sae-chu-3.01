@@ -19,42 +19,42 @@ class SeanceType extends AbstractType
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
                 'label' => 'Date de la séance',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('heureDebut', TimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Heure de début',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('heureFin', TimeType::class, [
                 'widget' => 'single_text',
                 'label' => 'Heure de fin',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('raison', TextType::class, [
                 'label' => 'Raison de la séance',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('note', TextType::class, [
                 'label' => 'Note (facultatif)',
                 'required' => false,
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('patient', EntityType::class, [
                 'class' => 'App\Entity\Patient',
                 'choice_label' => function ($patient) {
-                    return $patient->getNom() . ' ' . $patient->getPrenom();
+                    return $patient->getNom().' '.$patient->getPrenom();
                 },
                 'label' => 'Patient',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ])
             ->add('professionnel', EntityType::class, [
                 'class' => 'App\Entity\Professionnel',
                 'choice_label' => function ($pro) {
-                    return $pro->getNom() . ' ' . $pro->getPrenom();
+                    return $pro->getNom().' '.$pro->getPrenom();
                 },
                 'label' => 'Professionnel',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control'],
             ]);
     }
 

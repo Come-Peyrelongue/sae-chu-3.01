@@ -13,9 +13,8 @@ class ProfessionnelController extends AbstractController
     #[Route('/professionnel', name: 'app_professionnel')]
     public function index(
         Security $security,
-        ProfessionnelRepository $professionnelRepository
-    ): Response
-    {
+        ProfessionnelRepository $professionnelRepository,
+    ): Response {
         $login = $security->getUser()->getLogin();
         $pro = $professionnelRepository->findOneBylogin($login);
 

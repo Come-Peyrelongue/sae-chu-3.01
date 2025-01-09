@@ -13,10 +13,7 @@ class AppFixtures extends Fixture
 {
     /**
      * Fixtures généraux de l'application, chaque patient a au moins
-     * 2 séances et chaque professionnel est affecté à au moins 1 seance
-     *
-     * @param ObjectManager $manager
-     * @return void
+     * 2 séances et chaque professionnel est affecté à au moins 1 seance.
      */
     public function load(ObjectManager $manager): void
     {
@@ -34,24 +31,22 @@ class AppFixtures extends Fixture
         }
 
         foreach ($professionnels as $professionnel) {
-
             SeanceFactory::createOne([
                 'professionnel' => $professionnel,
                 'patient' => $patients[array_rand($patients)],
             ]);
         }
 
-        $patient = PatientFactory::createOne(["login" => "user"]);
-        UserFactory::createOne(["password" => "test", "roles" => ["ROLE_USER"]]);
+        $patient = PatientFactory::createOne(['login' => 'user']);
+        UserFactory::createOne(['password' => 'test', 'roles' => ['ROLE_USER']]);
 
-        $pro = ProfessionnelFactory::createOne(["login" => "pro"]);
-        UserFactory::createOne(["password" => "test", "roles" => ["ROLE_PRO"]]);
+        $pro = ProfessionnelFactory::createOne(['login' => 'pro']);
+        UserFactory::createOne(['password' => 'test', 'roles' => ['ROLE_PRO']]);
 
         SeanceFactory::createMany(3, [
             'patient' => $patient,
             'professionnel' => $pro,
         ]);
-
 
         $manager->flush();
     }

@@ -15,6 +15,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
     #[Route('/chu', name: 'app_chu')]
     public function chu(): Response
     {
@@ -32,5 +33,4 @@ class HomeController extends AbstractController
     {
         return $this->render('nous_rejoindre/nous_rejoindre.html.twig');
     }
-
 }

@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -33,11 +32,11 @@ class UserCrudController extends AbstractCrudController
         parent::persistEntity($entityManager, $entityInstance);
     }
 
-
     public static function getEntityFqcn(): string
     {
         return User::class;
     }
+
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -45,14 +44,14 @@ class UserCrudController extends AbstractCrudController
             TextField::new('login'),
             ArrayField::new('roles')
                 ->formatValue(function ($value) {
-                        if (in_array('ROLE_ADMIN',$value)) {
-                            return'<i class="fa-solid fa-address-card"></i>';
-                        } elseif (in_array('ROLE_PRO',$value)) {
-                            return '<i class="fa fa-user"></i>';
-                        } if (in_array('ROLE_USER',$value)) {
-                            return '<i class="fa-solid fa-user-nurse"></i>';
-                        } else {
-                            return '';
+                    if (in_array('ROLE_ADMIN', $value)) {
+                        return '<i class="fa-solid fa-address-card"></i>';
+                    } elseif (in_array('ROLE_PRO', $value)) {
+                        return '<i class="fa fa-user"></i>';
+                    } if (in_array('ROLE_USER', $value)) {
+                        return '<i class="fa-solid fa-user-nurse"></i>';
+                    } else {
+                        return '';
                     }
                 }),
             TextField::new('password')
@@ -61,7 +60,6 @@ class UserCrudController extends AbstractCrudController
                 ->setRequired(false)
                 ->setEmptyData('')
                 ->setFormTypeOption('attr', ['autocomplete' => 'new-password']),
-
         ];
     }
 
@@ -73,5 +71,4 @@ class UserCrudController extends AbstractCrudController
             $user->setPassword($hashedPassword);
         }
     }
-
 }

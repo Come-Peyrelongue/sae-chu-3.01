@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\ProfessionnelRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class IndexController extends AbstractController
 {
@@ -21,7 +21,7 @@ class IndexController extends AbstractController
             $results = $professionnelRepository->createQueryBuilder('p')
                 ->where('p.nom LIKE :search')
                 ->orWhere('p.prenom LIKE :search')
-                ->setParameter('search', '%' . $search . '%')
+                ->setParameter('search', '%'.$search.'%')
                 ->getQuery()
                 ->getResult();
         }
@@ -32,4 +32,3 @@ class IndexController extends AbstractController
         ]);
     }
 }
-

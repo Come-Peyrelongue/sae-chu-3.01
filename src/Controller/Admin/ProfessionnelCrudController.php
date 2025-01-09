@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Professionnel;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProfessionnelCrudController extends AbstractCrudController
@@ -25,5 +24,4 @@ class ProfessionnelCrudController extends AbstractCrudController
             TextField::new('login'),
         ];
     }
-
 }

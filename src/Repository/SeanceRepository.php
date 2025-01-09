@@ -58,7 +58,7 @@ class SeanceRepository extends ServiceEntityRepository
             ->addOrderBy('seance.heureDebut', 'ASC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 
     /**
@@ -71,7 +71,7 @@ class SeanceRepository extends ServiceEntityRepository
             ->andWhere('seance.date < CURRENT_TIMESTAMP()')
             ->setParameter('val', $value)
             ->orderBy('seance.date', 'ASC')
-            
+
             ->getQuery()
             ->getResult();
     }
@@ -89,6 +89,4 @@ class SeanceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-
 }
