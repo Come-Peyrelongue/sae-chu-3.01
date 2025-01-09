@@ -24,10 +24,20 @@ class DashboardController extends AbstractDashboardController
         ]);
     }
 
+    #[Route('/admin/dashboard', name: 'admin_dashboard')]
+    public function dashboard(): Response
+    {
+        $admin = $this->getUser();
+
+        return $this->render('admin/dashboard.html.twig',[
+            'admin' => $admin,
+        ]);
+    }
+
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Sae Chu 3 01');
+            ->setTitle('Administration hôpital Sébastopol');
     }
 
     public function configureMenuItems(): iterable
